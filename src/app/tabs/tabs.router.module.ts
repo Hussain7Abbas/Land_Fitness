@@ -11,7 +11,7 @@ const routes: Routes = [
         path: 'tab1',
         children: [
           {
-            path: 'profile',
+            path: '',
             loadChildren: () =>
               import('../Profile/tab1.module').then(m => m.Tab1PageModule)
           }
@@ -21,7 +21,7 @@ const routes: Routes = [
         path: 'tab2',
         children: [
           {
-            path: 'home',
+            path: '',
             loadChildren: () =>
               import('../Home/tab2.module').then(m => m.Tab2PageModule)
           }
@@ -31,7 +31,7 @@ const routes: Routes = [
         path: 'tab3',
         children: [
           {
-            path: 'products',
+            path: '',
             loadChildren: () =>
               import('../Products/tab3.module').then(m => m.Tab3PageModule)
           }
@@ -41,7 +41,7 @@ const routes: Routes = [
         path: 'tab4',
         children: [
           {
-            path: 'hero',
+            path: '',
             loadChildren: () =>
               import('../Hero/tab4.module').then(m => m.Tab4PageModule)
           }
