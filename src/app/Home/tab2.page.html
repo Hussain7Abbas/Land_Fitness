@@ -1,25 +1,42 @@
-<ion-header>
-   <h1>Home page</h1> 
+<ion-header>      
     <ion-toolbar>
       <ion-title>
-        <div>
-          <img src="assets/imgs/gym logo.png">
-        </div>
+          <div  >
+              <ion-icon size="large" img src="assets/icon/chat.svg"  style="float: right"></ion-icon>
+              <ion-icon size="large" img src="assets/icon/info.svg" style="float: left"></ion-icon>
+              <h2 class="navBarTitle">Land fitness</h2>
+            </div>
       </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
+      <div >
+          <img class="Center" src="assets/imgs/gym logo.png">
+         
       <div>
-          <img src="assets/imgs/Path 766.png">
+          <img src="assets/imgs/Path 766.png" >
+          <div class="CenteredText" >نصائح ومعلومات</div>
         </div>
-        <ion-card>
-            <img src="./madison.jpg" />
+        </div>
+        <ion-card style="border-radius: 1.5em">
+            <ion-card-title>
+            <h2 class="EditText">فؤائد الماء</h2> 
+          </ion-card-title>
+            <img class="EditImg"  src="assets/imgs/NoPath - Copy.png" />
             <ion-card-header>
-              <ion-card-subtitle>Destination</ion-card-subtitle>
-              <ion-card-title>Madison, WI</ion-card-title>
+              <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
+             
             </ion-card-header>
             <ion-card-content>
-              Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+                <div >
+                    <input type="checkbox" class="read-more-state" id="post-1" />
+                  
+                <p class="read-more-wrap">
+                    لوريم إيبسوم هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر<span class="read-more-target"> عندما قامت مطبعة مجهولة برص مجموعة من الأحرف بشكل عشوائي أخذتها من نص، لتكوّن كتيّب بمثابة دليل أو مرجع شكلي لهذه الأحرف. خمسة قرون من الزمن لم تقضي على هذا النص،  
+             </span> </p> <hr>
+               <label for="post-1" class="read-more-trigger"></label>
+</div>
+               
             </ion-card-content>
           </ion-card>
         </ion-content>
