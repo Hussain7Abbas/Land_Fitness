@@ -1,1 +1,34 @@
 
+// .navBarTitle{
+//     line-height: 26px; text-align: center;
+//      font-size: 2rem; 
+//      padding: 0px; margin: 0px;
+//     color:black;
+//     }
+    .EditContent{
+        padding-bottom:3px;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        }
+        .CardInfo{
+          border-radius: 1rem;
+        box-shadow:2px 2px 2px 2px #DCDCDC;
+        padding: 0px;
+        }
+       .productImgCard{
+        float: left;width: 155px; height: 100px; margin-top: 0.5rem;border-radius: 6px;padding: 0px;
+       }
+       .EditDivCard{
+        float: right;width: 148px; height: 100px; margin-top: 0.9rem;border-radius: 20px 0px 0px 20px; background-color: #3B0AB1;padding: 0em;
+       margin-bottom: 0.8rem;
+      }
+       div.item-native{
+        padding: 0px;
+       }
+       ion-card-content{
+         width: 100%;
+         height: auto;
+         padding: 0 !important;
+       }
+        
