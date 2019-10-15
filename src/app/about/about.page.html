@@ -6,9 +6,32 @@
                 <h2 class="navBarTitle">حول التطبيق </h2>
               </div>
         </ion-title>
+        <ion-segment color="warning" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="bookmark" checked layout="icon-start">
+              <ion-label>حول القاعة</ion-label>
+              <ion-icon name="information-circle-outline"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="bookmark" layout="icon-start">
+              <ion-label>حول الفريق</ion-label>
+              <ion-icon name="contacts"></ion-icon>
+            </ion-segment-button>
+          </ion-segment>
     </ion-toolbar>
+   
   </ion-header>
        
 <ion-content>
-
+  <div style="width: 100px;height: 100px;font-size: 115px;color:#4B00FF;">
+      <img class="Center" src="assets/imgs/code.png">
+  </div>
+  <div style="width: 100%;height: 100px;font-size: 115px;color:#4B00FF;">
+      <img class="Center" src="assets/imgs/YOUNG CODE.png">
+  </div>
+  <img src="assets/imgs/hala.png"  style="float: right; margin-right: 2em;padding: 0em;">
+  <img src="assets/imgs/hussein.png"  style="float:left; margin-left: 2em;padding: 0em;">
+  <br>
+  <div>
+      <ion-icon ios="ios-call" md="md-call">YOUNG CODE </ion-icon>
+      <ion-icon name="logo-facebook">07804834849</ion-icon>
+  </div>
 </ion-content>
