@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild  } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -6,12 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
-  segmentChanged(ev: any) {
-    console.log('Segment changed', ev);
-  }
+ 
+  category="landfitness"
+
   constructor() { }
 
   ngOnInit() {
   }
+  
+  segmentChanged(category: any) {
+    console.log('Segment changed', category);
+}
 
 }
