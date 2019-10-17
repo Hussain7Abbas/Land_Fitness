@@ -1,15 +1,8 @@
-// .navBarTitle{
-//   line-height: 26px; text-align: center;
-//    font-size: 2rem; 
-//    padding: 0px; margin: 0px;
-// color:black;
-//   }
-  .Editting{
-float: left;
-font-size: 2rem;
-margin:0px;
-
-padding:0rem;
+.Editting{
+    float: left;
+    font-size: 2rem;
+    margin:0px;
+    padding:0rem;
   } 
 
   #circle{
@@ -19,11 +12,13 @@ padding:0rem;
     border-radius: 40px;
     border: 3px solid #17AF85;
     stroke-width: 3px;
-    padding: 0px;
+    float: left; margin-left: 2em;padding: 0em;
 }
 .EditSpan{
-  height:100%;width: 100%;line-height: 40px;text-align: center; font-size:20px;margin-left:1.5rem;
+  height:100%;width: 100%;line-height: 40px;text-align: center; font-size:20px;margin-left:0rem;
+  padding: 0px 0px 0px 0px;margin-top: 1rem; margin-bottom: 0em;
 }
+
 .TextEdit{
   text-align: center;
   font-size: 28px;
@@ -36,7 +31,6 @@ color:#0050A1;
 margin-right: 1em;
 padding: 0px;
 margin-bottom: 0px;
-color:black;
 
 }
 .TextEdit_left{

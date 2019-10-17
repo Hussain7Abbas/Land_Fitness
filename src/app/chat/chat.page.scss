@@ -10,6 +10,8 @@
       }
       .IconSend{
       color:#FFF700;
+      float: right;
+      margin-top:6px;
       }
       .Msg_Footer{
         height: 32px;
@@ -20,9 +22,8 @@
         font-size: 18px;
         padding-left: 10px;
         padding-right: 10px;
+        margin-bottom: 5px;
        color: black;
-       flex: content;
-       word-wrap: inherit;
     }
     .Msg-Content{
       flex: content;border:2px solid #FFF700;width: 270px;height: 39; float: right;border-radius: 20px;text-align: right;background-color: #FFF700;color: black;padding-right: 5px;
