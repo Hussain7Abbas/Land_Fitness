@@ -8,3 +8,28 @@
     .EditIconNav{
         margin-top: 0.7rem;
       }
+      .IconSend{
+      color:#FFF700;
+      }
+      .Msg_Footer{
+        height: 32px;
+        width: 282px;
+        border: 2px solid #FFF700; 
+        border-radius:10px ;
+        text-align: right;
+        font-size: 18px;
+        padding-left: 10px;
+        padding-right: 10px;
+       color: black;
+       flex: content;
+       word-wrap: inherit;
+    }
+    .Msg-Content{
+      flex: content;border:2px solid #FFF700;width: 270px;height: 39; float: right;border-radius: 20px;text-align: right;background-color: #FFF700;color: black;padding-right: 5px;
+    }
+    .Msg-Contenter{
+    flex: content;border:2px solid #E2E8ED;width: 270px;height: 39;text-align: right; float: left;border-radius: 20px;overflow:unset;background-color:#E2E8ED;padding-right: 5px;color:black;
+    }
+
+    
+  
