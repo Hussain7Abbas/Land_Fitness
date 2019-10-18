@@ -7,13 +7,17 @@
   .CardInfo{
          border-radius: 1rem;
          box-shadow:2px 2px 2px 2px #DCDCDC;
+         width: 329px;
+         height: 102px;
+         padding: 0 !important;
     }
   .ImgHero{
          float: left;
          width: 80px; 
          height: 80px; 
-         margin-top: 0.5rem;
+         margin-top: 0.8rem;
          border-radius: 50px;
+         margin-left: 0.4rem;
     }
   .EditSpanHero{
          color:red; 
@@ -23,16 +27,16 @@
          float: right; 
          font-weight: bold; 
          font-size: 20px; 
-         margin-right: 1rem;
-         margin-top:0.5rem;
-         text-align: center;
+         margin-right: 1.5rem;
+         margin-top:1rem;
+         color: black;
     }
   .EditImgCardAge{
          float: right; 
          font-weight: bold; 
          font-size: 20px; 
          margin-right: 5rem;
-         margin-top:0.5rem;
-         text-align: center;
+         margin-top:0rem;
+         color: black;
     }
     

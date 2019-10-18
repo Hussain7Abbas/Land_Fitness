@@ -26,10 +26,6 @@
          margin-top: 1rem; 
          margin-bottom: 0em;
     }
-  #ColorCard{
-         background-color: aqua;
-         box-shadow:aqua;
-    }
   .TextEdit{
          text-align: center;
          font-size: 28px;
@@ -47,9 +43,9 @@
          float: left;
          width: 80px; 
          height: 80px;
-         margin-top: -1rem;
+         margin-top:1rem;
          border-radius: 50px;
-         margin-left: -1rem;
+         margin-left:0rem;
     }
   .Information{
          text-align: center;
@@ -100,24 +96,27 @@
     }
   .IconTrue{
          float: right;
-         margin-bottom: 4rem;
-         margin-left:1.5px;
+         margin-bottom: 0rem;
+         margin-left:0px;
+         margin-right: 3px;
+         margin-top: 3px;
     }
   .EditImgCard{
          float: right; 
          font-weight: bold; 
          font-size: 20px; 
-         margin-top:0.5rem;
-         text-align: center;
+         margin-top:1rem;
          margin-right: 1rem;
+         color: black;
     }
   .EditImgCardNo{
          float: right; 
          font-weight: bold; 
          font-size: 23px; 
-         margin-top:-1rem;
+         margin-top:0rem;
          text-align: center;
-         margin-right: 3.5rem;
+         margin-right:6rem;
+         color: black;
     }
   .SpanInfo{
          color:red; 
