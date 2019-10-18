@@ -1,35 +1,38 @@
-// .navBarTitle{
-//   line-height: 26px; text-align: center;
-//    font-size: 2rem; 
-//    padding: 0px; margin: 0px;
-//    color:black;
-
-//   }
   .EditContent{
-    padding-bottom:3px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
+         padding-bottom:3px;
+         padding-left: 0px;
+         padding-right: 0px;
+         padding-top: 0px;
     }
-    .CardInfo{
-      border-radius: 1rem;
-    box-shadow:2px 2px 2px 2px #DCDCDC;
+  .CardInfo{
+         border-radius: 1rem;
+         box-shadow:2px 2px 2px 2px #DCDCDC;
     }
-    
-    .EditImgCard{
-      float: right; 
-      font-weight: bold; 
-      font-size: 20px; 
-      margin-right: 1rem;
-      margin-top:0.5rem;
-      text-align: center;
+  .ImgHero{
+         float: left;
+         width: 80px; 
+         height: 80px; 
+         margin-top: 0.5rem;
+         border-radius: 50px;
     }
-    .EditImgCardAge{
-      float: right; 
-      font-weight: bold; 
-      font-size: 20px; 
-      margin-right: 5rem;
-      margin-top:0.5rem;
-      text-align: center;
+  .EditSpanHero{
+         color:red; 
+         font-weight: bold;
+    }
+  .EditImgCard{
+         float: right; 
+         font-weight: bold; 
+         font-size: 20px; 
+         margin-right: 1rem;
+         margin-top:0.5rem;
+         text-align: center;
+    }
+  .EditImgCardAge{
+         float: right; 
+         font-weight: bold; 
+         font-size: 20px; 
+         margin-right: 5rem;
+         margin-top:0.5rem;
+         text-align: center;
     }
     

@@ -1,85 +1,78 @@
 <ion-header>
     <ion-toolbar color="success" >
-        <ion-title ><div>
-                <ion-icon  class="EditIconNav" routerLink="/tabs" img src="assets/icon/arrow-left.svg" style="float: left" ></ion-icon>
+        <ion-title >
+          <div>
+            <ion-icon  class="EditIconNav" routerLink="/tabs" img src="assets/icon/arrow-left.svg" style="float: left" >
+            </ion-icon>
             </div>
-                <div> <h2 class="navBarTitle">حول التطبيق </h2>
-              </div>
-        </ion-title>
+          <div> 
+            <h2 class="navBarTitle">حول التطبيق </h2>
+            </div>
+          </ion-title>
       </ion-toolbar>
-        <ion-segment color="primary" (ionChange)="segmentChanged($event)"  [(ngModel)]="category">
-            
-            <ion-segment-button value="teamwork" layout="icon-start" >
-              <ion-label class="EditSeqment">حول الفريق</ion-label>
-              <ion-icon name="contacts"></ion-icon>
-            </ion-segment-button>
-            <ion-segment-button value="landfitness"checked layout="icon-start" >
-                <ion-label class="EditSeqment">حول القاعة</ion-label>
-                <ion-icon name="information-circle-outline"></ion-icon>
-              </ion-segment-button>
-          </ion-segment>
+    <ion-segment color="primary" (ionChange)="segmentChanged($event)"  [(ngModel)]="category">            
+        <ion-segment-button value="teamwork" layout="icon-start" >
+            <ion-label class="EditSeqment">حول الفريق</ion-label>
+            <ion-icon name="contacts"></ion-icon>
+          </ion-segment-button>
+        <ion-segment-button value="landfitness"checked layout="icon-start" >
+            <ion-label class="EditSeqment">حول القاعة</ion-label>
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </ion-segment-button>
+      </ion-segment>
    
   </ion-header>
  
 <ion-content>
   <div [ngSwitch]="category">
-      <ion-list *ngSwitchCase="'landfitness'">
-   
-        <div >
+      <ion-list *ngSwitchCase="'landfitness'">  
+        <div>
           <img class="Center" src="assets/imgs/gym logo.png">
           <div>
             <img src="assets/imgs/About land.png" >
+            </div>
           </div>
-        </div>
         <div style="color:black">
-          <p class="Editparagraph">قاعة رياضية مجهزه  بأحدث الاجهزه الرياضية والمكملات الغذائية وبأنسب الاسعار وتتعامل باحدث الانظمه الالكترونية </p>
-        
-        <p class="Editparagraph">
-<span style="color:#0050A1">مدير القاعة :</span>محمد سرحان بجاي
-        </p>
-        <p  class="Editparagraph"><span style="color:#0050A1">العنوان :</span> شارع الزيتون _ مقابل بيت منجا العلوية _ مجاور حلويات الشهد </p>
-      </div>
+          <p class="Editparagraph">قاعة رياضية مجهزه  بأحدث الاجهزه الرياضية والمكملات الغذائية وبأنسب الاسعار وتتعامل باحدث الانظمه الالكترونية </p>       
+          <p class="Editparagraph"><span style="color:#0050A1">مدير القاعة :</span>محمد سرحان بجاي</p>
+          <p class="Editparagraph"><span style="color:#0050A1">العنوان :</span> شارع الزيتون _ مقابل بيت منجا العلوية _ مجاور حلويات الشهد </p>
+          </div>
         <p class="TextContact">: للتواصل </p>    
-       <hr style="background-color:#0050A1; width:33%; text-align:center;height: 2px; margin-top: 0em;">
-      <div class="EditChip">
-          <ion-chip color="light" size="18px;">
+        <hr class="HrStyle">
+        <div class="EditChip">
+          <ion-chip color="light">
               <img class="Editfblogoimg"  src="assets/imgs/fb.png">&nbsp;
-              <ion-label style="color: black;margin-right:5px ;font-size: 18px;">Land Fitness</ion-label>
+              <ion-label class="EditLabel1">Land Fitness</ion-label>
             </ion-chip><br>
-            <ion-chip color="light">
+          <ion-chip color="light">
                 <img class="Editfblogoimg" src="assets/imgs/Instagram.svg">&nbsp;
-                <ion-label style="color: black;font-size: 18px;">Land_Fitness1</ion-label>
-              </ion-chip><br>
-              <ion-chip color="light">
-                  <img class="Editfblogoimg" src="assets/imgs/phone.svg">&nbsp;
-                  <ion-label style="color: black;font-size: 18px;">07806116852</ion-label>
-                </ion-chip>
-          
-     
-       
-      </div> 
-      </ion-list>
-  </div>
+                <ion-label class="EditLabel">Land_Fitness1</ion-label>
+            </ion-chip><br>
+          <ion-chip color="light">
+                <img class="Editfblogoimg" src="assets/imgs/phone.svg">&nbsp;
+                <ion-label class="EditLabel2">07806116852</ion-label>
+            </ion-chip> 
+          </div> 
+        </ion-list>
+     </div>
   <div [ngSwitch]="category">
       <ion-list *ngSwitchCase="'teamwork'">
-         <div style="text-align: center;"> <img class="EditimgTeam"src="assets/imgs/team.png"></div>
+          <div style="text-align: center;"> <img class="EditimgTeam"src="assets/imgs/team.png">
+            </div>
           <div>
-          <img class="ImgCode"src="assets/imgs/hala.png"  style="float: left; margin-left: 1.5em;">
-          <img src="assets/imgs/hussein.png"  style="float:right; margin-right: 1.5em;">
-          </div><br><br><br><br>
-          <div class="EditChip"    style="margin-top: 4rem;">
-              <ion-chip color="light" size="18px;">
-                  <img class="Editfblogoimg"  src="assets/imgs/fb.png">
-                  <ion-label style="color: black;margin-right:5px ;font-size: 18px;">&nbsp;YOUNG CODE</ion-label>
-                </ion-chip><br>
-                <ion-chip color="light">
-                    <img class="Editfblogoimg" src="assets/imgs/phone.svg">
-                    <ion-label style="color: black;font-size: 18px;">  07804834849</ion-label>
-                  </ion-chip><br>
-          </div>
-         
-          
-      </ion-list>
-</div>
- 
-</ion-content>
+            <img class="ImgCode"src="assets/imgs/hala.png"  style="float: left; margin-left: 1.5em;">
+            <img src="assets/imgs/hussein.png"  style="float:right; margin-right: 1.5em;">
+            </div><br><br><br><br>
+          <div class="EditChip" style="margin-top: 3rem;">
+           <ion-chip color="light">
+              <img class="Editfblogoimg"  src="assets/imgs/fb.png">
+              <ion-label class="EditLabel1">&nbsp;YOUNG CODE</ion-label>
+              </ion-chip><br>
+           <ion-chip color="light">
+              <img class="Editfblogoimg" src="assets/imgs/phone.svg">
+              <ion-label class="EditLabel1">  07804834849</ion-label>
+              </ion-chip><br>
+            </div>
+        </ion-list>
+      </div>
+ </ion-content> 

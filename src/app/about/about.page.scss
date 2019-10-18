@@ -1,72 +1,94 @@
-.navBarTitle{
-    line-height: 40px;
-     text-align: center;
-     font-size: 24px; 
-     padding: 0px; margin: 0px;
-     color:black;
+     .navBarTitle{
+         line-height: 40px;
+         text-align: center;
+         font-size: 24px; 
+         padding: 0px; 
+         margin: 0px;
+         color:black;
+    }
+    .HrStyle{
+         background-color:#0050A1; 
+         width:33%; 
+         text-align:center;
+         height: 2px; 
+         margin-top: 0em;
     }
     .ion-padding, [padding] {
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-bottom: 0px;
-        padding-top: 0px;
-        -webkit-padding-start: var(--ion-padding, 0px);
-        padding-inline-start: var(--ion-padding, 0px);
-        -webkit-padding-end: var(--ion-padding, 0px);
-        padding-inline-end: var(--ion-padding, 0px);
+         padding-left: 0px;
+         padding-right: 0px;
+         padding-bottom: 0px;
+         padding-top: 0px;
+         -webkit-padding-start: var(--ion-padding, 0px);
+         padding-inline-start: var(--ion-padding, 0px);
+         -webkit-padding-end: var(--ion-padding, 0px);
+         padding-inline-end: var(--ion-padding, 0px);
     }
     .EditIcons{
-        margin-top: 0.9rem;
+         margin-top: 0.9rem;
+    }
+    .EditLabel{
+         color: black;
+         font-size:18px;
+    }
+   .EditLabel1{
+         color: black;
+         margin-right:9px;
+         font-size:18px;
+   }
+   .EditLabel2{
+         color:black;
+         margin-right:4px;
+         font-size:18px;
     }
     .EditSeqment{
-        font-size: 18px;
-        font-weight: bold;
+         font-size: 18px;
+         font-weight: bold;
     }
     
     .Center{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 8pt;
-        margin-top: 2rem;
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+         margin-bottom: 8pt;
+         margin-top: 2rem;
     }
     .Editparagraph{
-        font-size: 18px;
-        text-align: right;
-        margin-right: 0.5rem;
-        margin-top: 0px;
-        margin-bottom: 0px;
+         font-size: 18px;
+         text-align: right;
+         margin-right: 0.5rem;
+         margin-top: 0px;
+         margin-bottom: 0px;
     }
    
     .EditChip{
-        text-align: center;
-        font-weight: bold;
-        color: black;
+         text-align: center;
+         font-weight: bold;
+         color: black;
     }
     .Editfblogoimg{
-        width: 32.5px;
-        height: 32px;
-        margin: 0 !important;
+         width: 32.5px;
+         height: 32px;
+         margin: 0 !important;
     }
   
     .EditimgTeam{
-        text-align: center;
-        margin-top: -4rem;
+         text-align: center;
+         margin-top: -4rem;
     }
     .ImgCode{
-        padding: 0em;
-        width: 139px;
-        height: 139px;
+         padding: 0em;
+         width: 139px;
+         height: 139px;
     }
     .TextContact{
-        color:#0050A1;
-        text-align:center ;
+         color:#0050A1;
+         text-align:center ;
          font-size: 20px; 
          font-weight: bold;
          margin-top: 0.3rem;
          margin-bottom: 0rem; 
     }
     .EditIconNav{
-        margin-top: 0.7rem;
-      }
+         margin-top: 0.7rem;
+    }
   
