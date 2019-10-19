@@ -6,17 +6,19 @@
          margin-top: 2rem;
     }
   .EditImg{
-         padding-left: 5%;
-         padding-right: 5%;
+         padding-left: 2%;
+         padding-right: 2%;
+         height: 151px;
     }
-  .EditText{
-         margin-top: 16px;
-         margin-bottom: 10px;
-         font-weight: bold;
-         line-height: 1.2;
-         text-align: center;
+  ion-card-header{
+         padding: 0px;
+    }
+  ion-card-title{
          font-size: 26px;
-         color: black;
+         font-weight: bold;
+         padding: 0em;
+         text-align: center;
+         margin:5px;     
     }
   .read-more-state {
          display: none;
@@ -41,25 +43,27 @@
   .read-more-trigger {
          cursor: pointer;
          display: inline-block;
-         padding: 0 .5em;
          color:#0050A1;
          font-size: 18px;
-         line-height: 2;
-         border: 1px  blue;
-         border-radius: -0.75em;
+         border-top: 1px solid rgba(224, 214, 214, 0.897);
          width: 100%;
          text-align: center;
          font-weight: bold;
+         margin-top: 8px;
+         height: 38px;
     } 
   /* Other style */ 
   body {
-         padding: 2%;
+         padding: 0 !important;
+    }
+    ion-card-content{
+       padding: 0 !important;
     }
   p {
          padding: 2%;
          background: white;
-         color: #08286d;
-         border-radius: .25em;
+         color:black;
+         text-align: right;
     }
 hr{
          display: block;

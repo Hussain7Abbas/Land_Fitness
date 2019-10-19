@@ -14,7 +14,7 @@
          float: left;
          width: 155px; 
          height: 100px; 
-         margin-top: 0.5rem;
+         margin-top: 1rem;
          border-radius: 6px;
          padding: 0px;
     }
@@ -34,7 +34,7 @@
   ion-card-content{
          width: 100%;
          height: auto;
-         padding: 0 !important;       
+         padding: 0 !important;  
     }
   .EditTextPrice{
          color:white;
@@ -52,6 +52,7 @@
          font-weight: bold;
          padding: 0em;
          text-align: center;
+         margin-top: 13px;     
     }
   .PriceNumber{
          color:white;
