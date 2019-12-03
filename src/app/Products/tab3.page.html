@@ -1,50 +1,21 @@
 <ion-content >
-    <div >
-        <img src="assets/imgs/product.png">
-        </div>   
-    <ion-card class="CardInfo">
-        <ion-card-header>
-            <ion-card-title>Gold Standard 100% Whey
-                </ion-card-title>
-            </ion-card-header>
-        <ion-card-content class="EditContent">
-            <div class="item-inner">                   
-                </div>
-                <img class="productImgCard" src="assets/imgs/product1.png">&nbsp;&nbsp;
-                <div class="EditDivCard">
-                    <span class="PriceNumber">120 </span>
-                    <span  class="EditTextPrice">الف د.ع</span>
-                    </div>         
-            </ion-card-content>
-        </ion-card> 
-    <ion-card class="CardInfo">
-        <ion-card-header>
-            <ion-card-title>Bad Ass Whey
-                </ion-card-title>
-            </ion-card-header>
-        <ion-card-content class="EditContent">
-            <div class="item-inner">
-                </div>
-                <img class="productImgCard" src="assets/imgs/product2.png">&nbsp;&nbsp;
-                <div class="EditDivCard">
-                    <span class="PriceNumber">50 </span>
-                    <span class="EditTextPrice">الف د.ع</span>
-                    </div>          
-            </ion-card-content>
-        </ion-card>
-    <ion-card class="CardInfo">
-        <ion-card-header>
-            <ion-card-title>Tumbler Cup
-                </ion-card-title>
-            </ion-card-header>
-        <ion-card-content class="EditContent">
-            <div class="item-inner">
-                </div>
-                <img class="productImgCard" src="assets/imgs/product3.png">&nbsp;&nbsp;
-                <div class="EditDivCard">
-                    <span class="PriceNumber" >150 </span>
-                    <span class="EditTextPrice">الف د.ع</span>
-                    </div>        
-            </ion-card-content>
-        </ion-card>
-    </ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
+
+    <div><img src="assets/imgs/product.png"></div>
+    <div class="content">
+
+        <div class="card" *ngFor="let product of products">
+            <h2 class="card-title">{{product.name}}</h2>
+            <img class="card-img" src="assets/imgs/product1.png"/>    
+            <div class="card-footer">
+                <pre id="cardBody{{product.idPr}}">{{product.body}}</pre>
+                <h2 class="productPrice">{{product.price}}<span style="font-size: 18px;">&nbsp;د.ع</span></h2>
+                <button class="card-button" (click)="showMore(product.idPr)" id="cardButton{{product.idPr}}">&nbsp;&nbsp;المزيد</button>
+            </div>
+        </div>
+
+        <ion-infinite-scroll threshold="30px" (ionInfinite)="doScroll($event)"><ion-infinite-scroll-content loadingSpinner="null"><img id="loadingSVG" src="../../assets/loadingSVGB.svg"></ion-infinite-scroll-content></ion-infinite-scroll>
+    </div>
+
+
+</ion-content>

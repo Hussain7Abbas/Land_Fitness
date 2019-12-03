@@ -1,26 +1,17 @@
 <ion-content>
-  <div >
-    <img class="Center" src="assets/imgs/gym logo.png">        
-      <div>
-        <img src="assets/imgs/homeimg.png" >
-        </div>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
+
+  <img class="logo" src="assets/imgs/gym logo.png">        
+  <img src="assets/imgs/homeHeader.png" style="width: 100%;" >
+
+  <div class="content">
+    <div class="card" *ngFor="let post of posts">
+      <h2 class="card-title">{{post.title}}</h2>
+      <img class="card-img" src="assets/imgs/water.png" />      
+      <pre id="cardBody{{post.idPo}}">{{post.body}}</pre>
+      <button class="card-button" (click)="showMore(post.idPo)" id="cardButton{{post.idPo}}">عرض المزيد</button>
     </div>
-  <ion-card style="border-radius:10px;width:340px; height: 340px;">
-    <ion-card-header>
-      <ion-card-title>فؤائد الماء
-          </ion-card-title>
-      </ion-card-header>
-      <img class="EditImg"  src="assets/imgs/water.png" />
-        <ion-card-content>
-          <div>
-            <input type="checkbox" class="read-more-state" id="post-1" />                  
-              <p class="read-more-wrap">
-                  يعدّ الماء جزءاً أساسياً ومهمّاً في جسم الإنسان، إضافةً إلى  ومهمّةً في جميع خلايا وأنسجةيعدّ الماء جزءاً أساسياً ومهمّاً في جسم الإنسان؛ حيث إنّه يشكل حوالي 60% من وزن الجسم، . وأعضاء.
-                <span class="read-more-target">  حيث يشكل بنسبة 80% من جسم الانسان 
-                   </span> 
-                </p>
-              <label for="post-1" class="read-more-trigger"></label>
-           </div>
-          </ion-card-content>
-    </ion-card>
-  </ion-content>
+
+    <ion-infinite-scroll threshold="30px" (ionInfinite)="doScroll($event)"><ion-infinite-scroll-content loadingSpinner="null"><img id="loadingSVG" src="../../assets/loadingSVGB.svg"></ion-infinite-scroll-content></ion-infinite-scroll>
+  </div>
+</ion-content>
