@@ -7,6 +7,9 @@ import { LandfitnessDBService } from "../landfitness-db.service";
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+
+  apiUrl = this.landFitnessDB.apiUrl;
+
   products = [];
 
   constructor(public landFitnessDB:LandfitnessDBService) {}
@@ -38,7 +41,7 @@ export class Tab3Page {
           this.products.push({
             "idPr" : product["idPr"],
             "name" : newProduct.name,
-            "price" : newProduct.price,
+            "price" : String(newProduct.price).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             "body" : newProduct.body,
             "imgURL" : newProduct.imgURL
           })

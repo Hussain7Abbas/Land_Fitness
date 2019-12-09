@@ -1,13 +1,13 @@
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
-
-  <img class="logo" src="assets/imgs/gym logo.png">        
-  <img src="assets/imgs/homeHeader.png" style="width: 100%;" >
+  <img class="LFLogo" src="assets/imgs/landFitnessLogo.png">        
+  <img class="headerImg" src="assets/imgs/homeHeader.png">
 
   <div class="content">
+    
     <div class="card" *ngFor="let post of posts">
       <h2 class="card-title">{{post.title}}</h2>
-      <img class="card-img" src="assets/imgs/water.png" />      
+      <img class="card-img" src="{{apiUrl}}/api/img/posts/{{post.idPo}}" />      
       <pre id="cardBody{{post.idPo}}">{{post.body}}</pre>
       <button class="card-button" (click)="showMore(post.idPo)" id="cardButton{{post.idPo}}">عرض المزيد</button>
     </div>

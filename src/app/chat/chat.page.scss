@@ -1,70 +1,60 @@
-    .navBarTitle{
-         line-height: 40px;
-         text-align: center;
-         font-size: 24px; 
-         padding: 0px; 
-         margin: 0px;
-         color:black;
-      }
-    .EditIconNav{
-         margin-top: 0.7rem;
-         float: left;
-      }
-    .EditParagraphStyle{
-         word-wrap: inherit;
-         padding-right: 10px;
-      }
-    .EditTimeChat{
-         margin: 0px 0px 0px 0px;
-         float: right;
-         color:#BCC5D3;
-      }
-    .EditTimeChat1{
-         margin: 0px 0px 0px 0px;
-         float: left;
-         color:#BCC5D3;
-      }
-    .IconSend{
-         color:#FFF700;
-         float: right;
-         margin-top:10px;
-      }
-    .Msg_Footer{
-         height: 32px;
-         width: 282px;
-         border: 2px solid #FFF700; 
-         border-radius:10px ;
-         text-align: right;
-         font-size: 18px;
-         padding-left: 10px;
-         padding-right: 10px;
-         margin-bottom: 5px;
-         color: black;
-      }
-    .Msg-Content{
-         flex: content;
-         border:2px solid #FFF700;
-         width: 270px;
-         height: 39; 
-         float: right;
-         border-radius: 20px;
-         text-align: right;
-         background-color: #FFF700;
-         color: black;
-         padding-right: 5px;
-      }
-    .Msg-Contenter{
-         flex: content;
-         border:2px solid #E2E8ED;
-         width: 270px;  
-         text-align: right; 
-         float: left;
-         border-radius: 20px;
-         overflow:unset;
-         background-color:#E2E8ED;
-         padding-right: 5px;
-         color:black;
-      }
+.navBarIcons{height: 12px; margin: 18px 20px;}
 
-    
-  
+
+.EditParagraphStyle{
+   word-wrap: inherit;
+   padding-right: 10px;
+}
+.EditTimeChat{
+   margin: 0px 0px 0px 0px;
+   float: right;
+   color:#BCC5D3;
+}
+.EditTimeChat1{
+   margin: 0px 0px 0px 0px;
+   float: left;
+   color:#BCC5D3;
+}
+.IconSend{
+   color:#FFF700;
+   float: right;
+   margin-top:10px;
+}
+.Msg_Footer{
+   height: 32px;
+   width: 282px;
+   border: 2px solid #FFF700; 
+   border-radius:10px ;
+   text-align: right;
+   font-size: 18px;
+   padding-left: 10px;
+   padding-right: 10px;
+   margin-bottom: 5px;
+   color: black;
+}
+.Msg-Content{
+   flex: content;
+   border:2px solid #FFF700;
+   width: 270px;
+   height: 39; 
+   float: right;
+   border-radius: 20px;
+   text-align: right;
+   background-color: #FFF700;
+   color: black;
+   padding-right: 5px;
+}
+.Msg-Contenter{
+   flex: content;
+   border:2px solid #E2E8ED;
+   width: 270px;  
+   text-align: right; 
+   float: left;
+   border-radius: 20px;
+   overflow:unset;
+   background-color:#E2E8ED;
+   padding-right: 5px;
+   color:black;
+}
+
+

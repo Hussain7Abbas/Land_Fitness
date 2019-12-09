@@ -1,41 +1,39 @@
 <ion-content>
-  <div >
-      <img src="assets/imgs/herostart.png">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
+  <img class="headerImg" src="assets/imgs/heroesHeader.png">
+
+  <div class="content">
+    <div class="card" *ngFor="let hero of heroes" (click)="openModal(hero)">
+      <h4 class="heroName">{{hero.name}}<br>الوزن:&nbsp;<span>{{hero.details['wieght']}}</span></h4>
+      <img class="heroImg" src="{{apiUrl}}/api/img/usersR/{{hero.idUs}}">             
     </div>
-  <ion-card class="CardInfo">
-    <ion-card-content class="EditContent">
-     
-        <img class="ImgHero" src="assets/imgs/heroone.png">        
-        <ion-label>                  
-          <h2 class="EditImgCard" > علي عباس عبد الجليل</h2><br><br>              
-          <div> 
-            <h3 class="EditImgCardAge"  >العمر:<span class="EditSpanHero">25</span></h3>  
-            </div> 
-          </ion-label>                
-       
-      </ion-card-content>
-    </ion-card>
-  <ion-card class="CardInfo">
-    <ion-card-content class="EditContent">    
-        <img class="ImgHero" src="assets/imgs/heroone.png">                   
-        <ion-label>
-          <h2 class="EditImgCard" > علي عباس عبد الجليل</h2><br><br>                  
-            <div> 
-              <h3 class="EditImgCardAge"  >العمر:<span class="EditSpanHero">25</span></h3>  
-              </div> 
-          </ion-label>                          
-      </ion-card-content>
-    </ion-card>
-  <ion-card class="CardInfo">
-    <ion-card-content class="EditContent">
-        <img class="ImgHero" src="assets/imgs/heroone.png">                   
-        <ion-label>
-          <h2 class="EditImgCard" > علي عباس عبد الجليل</h2><br><br>                      
-          <div> 
-            <h3 class="EditImgCardAge"  >العمر:<span class="EditSpanHero">25</span></h3>  
-            </div> 
-          </ion-label>                        
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
-  
+
+    <ion-infinite-scroll threshold="30px" (ionInfinite)="doScroll($event)"><ion-infinite-scroll-content loadingSpinner="null"><img id="loadingSVG" src="../../assets/loadingSVGB.svg"></ion-infinite-scroll-content></ion-infinite-scroll>
+  </div>
+</ion-content>
+
+
+
+<div class="modal" id="heroModal"><div class="modal-container">
+  <h2 class="modal-header">معلومات اللاعب</h2>
+
+  <div class="modal-body">
+    <div id="userModalTop">
+      <img src="{{apiUrl}}/api/img/usersR/{{hero.idUs}}">
+      <h2>{{hero.name}}</h2>
+    </div>
+
+    <div class="modal-information">
+      <h2>التفاصيل</h2>    
+      <hr>
+      <h3><span>وزن اللاعب : </span>{{hero.details['wieght']}}</h3>
+      <h3><span>طول اللاعب : </span>{{hero.details['tall']}}</h3>
+      <h3><span>قطر الخصر : </span>{{hero.details['waistDiameter']}}</h3>
+      <h3><span>قطر الذراع : </span>{{hero.details['armDiameter']}}</h3>
+      <h3><span>قطر الفخذ : </span>{{hero.details['legDiameter']}}</h3>
+      <h3><span>عرض الظهر : </span>{{hero.details['backWidth']}}</h3>
+    </div>
+  </div>
+
+  <h2 class="modal-footer" (click)="closeModal()">اغلاق</h2>
+</div></div>

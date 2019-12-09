@@ -9,6 +9,7 @@ import { LandfitnessDBService } from "../landfitness-db.service";
 })
 export class Tab2Page {
 
+  apiUrl = this.landFitnessDB.apiUrl;
 
   posts = [];
 

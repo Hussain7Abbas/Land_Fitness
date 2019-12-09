@@ -1,13 +1,6 @@
-.logo{
-      display: block;
-      margin: 2rem auto;
-      margin-bottom: 1rem;
-      width: 50%;
-  }
-
-.card-img{height: 150px; width: 100%; object-fit: cover;}
+.card-img{height: 56vw; width: 100%; object-fit: cover;}
 .card-button{
-  width: calc(100% + 20px); height: 40px; margin-top: 10px; margin-right: -10px; margin-bottom: -10px;
+  width: 100%; height: 40px; margin-top: 10px;
   background-color: #3B0AB1; border-radius: 0 0 10px 10px;
   font-size: 20px; color: white;
 }

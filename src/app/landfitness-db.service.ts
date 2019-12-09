@@ -13,7 +13,7 @@ export class LandfitnessDBService {
     'content-type' : 'application/json'
   });
 
-  apiKey = "http://localhost:8000/";
+  apiUrl = "http://localhost:8000/";
 
   constructor(public _HttpClient:HttpClient) { }
 
@@ -39,7 +39,7 @@ export class LandfitnessDBService {
       let headers = new HttpHeaders({
         'content-type' : 'application/json'
       });
-      this._HttpClient.get(this.apiKey + 'api/' + pageName + '/all/' + lastDataId, {headers:headers})
+      this._HttpClient.get(this.apiUrl + 'api/' + pageName + '/all/' + lastDataId, {headers:headers})
       .subscribe(res => {
         resolve(res);
       }, (err) => {
@@ -51,18 +51,18 @@ export class LandfitnessDBService {
 
   getOneData(pageName: string, lastDataId: string){
     return new Promise((resolve, reject) => {
-      this._HttpClient.get(this.apiKey + 'api/' + pageName + '/' + lastDataId, {headers:this.headers})
+      this._HttpClient.get(this.apiUrl + 'api/' + pageName + '/' + lastDataId, {headers:this.headers})
       .subscribe(res => {
         resolve(res);
       }, (err) => {
-        reject(err.error);
+        resolve(err['error']);
       });
     });
   }
 
   addData(pageName: string, data: object){
     return new Promise((resolve, reject) => {
-      this._HttpClient.post(this.apiKey + 'api/' + pageName + '/', JSON.stringify(data), {headers:this.headers})
+      this._HttpClient.post(this.apiUrl + 'api/' + pageName + '/', JSON.stringify(data), {headers:this.headers})
       .subscribe(res => {
         console.log(res['data']);
         resolve(res['data']);
@@ -75,7 +75,7 @@ export class LandfitnessDBService {
 
   updateData(pageName: string, data: object, dataId: string){
     return new Promise((resolve, reject) => {
-      this._HttpClient.put(this.apiKey + 'api/' + pageName + '/' + dataId, JSON.stringify(data), {headers:this.headers})
+      this._HttpClient.put(this.apiUrl + 'api/' + pageName + '/' + dataId, JSON.stringify(data), {headers:this.headers})
       .subscribe(res => {
         console.log(res['data']);
         resolve(res['data']);
@@ -88,7 +88,7 @@ export class LandfitnessDBService {
 
   // searchData(pageName: string, searchCol: string, searchText: string){
   //   return new Promise((resolve, reject) => {
-  //     this._HttpClient.post(this.apiKey + 'api/' + pageName + '/search', JSON.stringify(
+  //     this._HttpClient.post(this.apiUrl + 'api/' + pageName + '/search', JSON.stringify(
   //                           {'searchCol': searchCol, 'searchText': searchText}), {headers:this.headers})
   //     .subscribe(res => {
   //       console.log(res);

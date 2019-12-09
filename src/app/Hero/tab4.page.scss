@@ -1,41 +1,20 @@
-  .EditContent{
-         padding-bottom:3px;
-         padding-left: 0px;
-         padding-right: 0px;
-         padding-top: 0px;
-    }
-  .CardInfo{
-         border-radius: 1rem;
-         box-shadow:2px 2px 2px 2px #DCDCDC;
-         width: 335px;
-         height: 102px;
-         padding: 0 !important;
-    }
-  .ImgHero{
-         float: left;
-         width: 100px;
-         height: 100px; 
-         margin: 5px;
-         border-radius: 50px;
-    }
-  .EditSpanHero{
-         color:red; 
-         font-weight: bold;
-    }
-  .EditImgCard{
-         float: right; 
-         font-weight: bold; 
-         font-size: 20px; 
-         margin-right: 1.5rem;
-         margin-top:1rem;
-         color: black;
-    }
-  .EditImgCardAge{
-         float: right; 
-         font-weight: bold; 
-         font-size: 20px; 
-         margin-right: 5rem;
-         margin-top:0.5rem;
-         color: black;
-    }
-    
+.card{height: 110px; padding: 0; display: flex;}
+
+.heroImg{
+  float: left;
+  height: 90px; width: 90px;
+  margin: 9px 10px;
+  border-radius: 100px;
+  object-fit: cover;
+  box-shadow: 0px 3px 3px 0px #efefef;
+}
+
+.heroName{
+  float: right; margin: 15px 10px; flex-grow: 1;
+  font-weight: bold; text-align: center; color: black; line-height: 40px;
+  overflow-x: scroll; overflow-y: hidden; white-space: nowrap;
+}.heroName span{color:#e80000;}
+
+.modal-information hr{background-color: #e80000;}
+.modal-information h2{color: #e80000;}
+.modal-information h3 span{color: #e80000;}

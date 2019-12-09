@@ -1,98 +1,40 @@
-     .navBarTitle{
-         line-height: 40px;
-         text-align: center;
-         font-size: 24px; 
-         padding: 0px; 
-         margin: 0px;
-         color:black;
-    }
-    .HrStyle{
-         background-color:#0050A1; 
-         width:33%; 
-         text-align:center;
-         height: 2px; 
-         margin-top: 0em;
-    }
-    .ion-padding, [padding] {
-         padding-left: 0px;
-         padding-right: 0px;
-         padding-bottom: 0px;
-         padding-top: 0px;
-         -webkit-padding-start: var(--ion-padding, 0px);
-         padding-inline-start: var(--ion-padding, 0px);
-         -webkit-padding-end: var(--ion-padding, 0px);
-         padding-inline-end: var(--ion-padding, 0px);
-    }
-    .EditIcons{
-         margin-top: 0.9rem;
-    }
-    .EditLabel{
-         color: black;
-         font-size:18px;
-    }
-   .EditLabel1{
-         color: black;
-         margin-right:9px;
-         font-size:18px;
-     }
-   .EditLabel2{
-         color:black;
-         margin-right:4px;
-         font-size:18px;
-     }
-   .EditLabel3{
-          color:black;
-          font-size:18px;
-     }
-    .EditSeqment{
-         font-size: 18px;
-         font-weight: bold;
-    }
-    
-    .Center{
-         display: block;
-         margin-left: auto;
-         margin-right: auto;
-         margin-bottom: 8pt;
-         margin-top: 2rem;
-    }
-    .Editparagraph{
-         font-size: 18px;
-         text-align: right;
-         margin-right: 0.5rem;
-         margin-top: 0px;
-         margin-bottom: 0px;
-    }
-   
-    .EditChip{
-         text-align: center;
-         font-weight: bold;
-         color: black;
-    }
-    .Editfblogoimg{
-         width: 32.5px;
-         height: 32px;
-         margin: 0 !important;
-    }
-  
-    .EditimgTeam{
-         text-align: center;
-         margin-top: -4rem;
-    }
-    .ImgCode{
-         padding: 0em;
-         width: 139px;
-         height: 139px;
-    }
-    .TextContact{
-         color:#0050A1;
-         text-align:center ;
-         font-size: 20px; 
-         font-weight: bold;
-         margin-top: 0.3rem;
-         margin-bottom: 0rem; 
-    }
-    .EditIconNav{
-         margin-top: 0.7rem;
-    }
-  
+// =============== Nav Bar Section ===============
+
+.navBarIcons{height: 12px; margin: 18px 20px;}
+
+ion-label{
+     font-size: 18px;
+     font-weight: bold;
+}
+
+// =============== Header Section ===============
+.YCLogo{display: block; margin: 10% auto; width: 80%;}
+// =============== Details Section ===============
+#landFitnessDiv *{font-family: 'tajawal', sans-serif;}
+.detailsSection{
+     font-size: 18px; text-align: justify;
+     margin: 10px 20px;
+} .detailsSection p{margin: 10px 0;} .detailsSection span{color: #0050A1; font-weight: bold;}
+
+.developers{display: flex; justify-content: center; margin: 10% 0; margin-bottom: 5%}
+.developers img{margin: 0 3%; width: 36%; border-radius: 100%; border: 1px solid #707070; object-fit: cover;}
+// =============== Contact Section ===============
+.contactSection{
+     margin-top: 20px;
+     text-align: center;
+     display: flex; flex-direction: column; flex-wrap: wrap;
+}
+.contactSection hr{background-color: #0050A1; width: 60%; margin: 10px auto; height: 2px;}
+.contactDetails{margin: auto;}
+.contactDetails div{clear: both; height: 50px; padding: 10px 0;}
+.contactDetails div img{float: left; height: 30px; border-radius: 50px;}
+.contactDetails div h4{float: left; margin-left: 10px; line-height: 30px; font-weight: bold;}
+
+.contactSectionYC{display: flex; flex-direction: column; flex-wrap: wrap;}
+
+
+
+.modal-information hr{background-color: #0070ff;}
+.modal-information h2{color: #0070ff;}
+.modal-information h3 span{color: #0070ff;}
+.modal-information h3{font-size: 16px; text-align: justify;}

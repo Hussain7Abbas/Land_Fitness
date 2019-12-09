@@ -1,49 +1,98 @@
-<ion-content>
-  <div>
-    <h2 class="TextEdit">عباس محمد علي </h2>
+<ion-content *ngIf="!isUser">
+  <div id="signInForm">
+    <div id="signInDiv">
+      <h3>ادخل معرف الدخول الخاص بك</h3>
+      <input type="text" [(ngModel)]="signInIdUs">
+      <button type="button" (click)="signIn()">تسجيل دخول</button>
     </div>
-  <div>
-    <h4 class="TextEdit_right">نوع الاشتراك </h4>
-    <h4 class="TextEdit_left">الايام المتبقية </h4>
-    </div> <br><br>  
-  <div > 
-    <img class="EditImgDays"src="assets/imgs/type.png">
-      <div id="circle">
-        <p class="EditSpan">10 يوم  </p>
-        </div>
-    </div><br><br><br>
-  <div class="Information">
-    <p class="InfoText">معلومات اللاعب </p>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="isUser">
+  <h2 style="text-align: center; margin: 5% 0;">{{user.name}}</h2>
+
+  <div id="circles">
+    <div class="circleDiv">
+      <h4>نوع الاشتراك</h4>
+      <div class="circle"><img class="EditImgDays" src="assets/imgs/{{user.joinType}}.png"></div>
     </div>
-  <img src="assets/imgs/course.png" >
-  <ion-card class="CardInfo" color="secondary">
-    <ion-card-content color="primary" class="EditContent">
-        <img class="ImgInfo" src="assets/imgs/pro.png">     
-        <ion-label>
-          <div class="IconTrue">
-            <ion-icon size="large" img src="assets/icon/true.svg"  >
-              </ion-icon>
-            </div>  
-          <h2 class="EditImgCard" > دفع ماكنه واقف</h2><br><br>
-          <div> 
-            <h3 class="EditImgCardNo">3<span class="SpanInfo">X</span>10</h3>  
-            </div> 
-          </ion-label>       
-      </ion-card-content>
-    </ion-card>
-  <ion-card class="CardInfo">
-    <ion-card-content class="EditContent">
-          <img class="ImgInfo" src="assets/imgs/sit.svg">        
-          <ion-label>
-            <div class="IconTrue">
-              <ion-icon size="large" img src="assets/icon/Rectangle 11.svg"  >
-                </ion-icon>
-              </div>  
-            <h2 class="EditImgCard" > دفع ماكنه جالس</h2><br><br>
-            <div> 
-              <h3 class="EditImgCardNo">3<span class="SpanInfo">X</span>10</h3>  
-              </div> 
-            </ion-label>          
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+    <div class="circleDiv">
+      <h4>الايام المتبقية</h4>
+      <div class="circle" [ngStyle]="{'border-color': userDays(user.joinDay) > 20 ? '#009e45' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}"><h2 [ngStyle]="{'color': userDays(user.joinDay) > 20 ? '#009e45' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}" dir="ltr"><span>{{userDays(user.joinDay)}}</span></h2></div>
+    </div>
+  </div>
+  <button id="userInfoButton" type="button" (click)="openModal('user', 'user')">معلومات اللاعب</button>
+
+
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
+  <img class="headerImg" src="assets/imgs/coursesHeader.png" >
+
+  <ion-item>
+    <ion-label>تمارين اليوم</ion-label>
+    <ion-select id="courceDay" class="tools-input" #day (ionChange)="openDay(day.value)" cancelText = "الغاء" [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
+      <ion-select-option *ngIf="cources[0]?.length > 0" selected value="1">الأول</ion-select-option>
+      <ion-select-option *ngIf="cources[1]?.length > 0" value="2">الثاني</ion-select-option>
+      <ion-select-option *ngIf="cources[2]?.length > 0" value="3">الثالث</ion-select-option>
+      <ion-select-option *ngIf="cources[3]?.length > 0" value="4">الرابع</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="content">
+    <div *ngIf="trainings.length == 0"><img src="../../assets/imgs/error404.png" style="width: 40%; display: block; margin: 5% auto;"><h2 style="width: 100%; text-align: center;">لا توجد تمارين لعرضها</h2></div>
+
+    <div class="card" *ngFor="let training of trainings" (click)="openModal(training, 'training')">
+      <h4 class="trainingName">{{training.name}}<br><span>{{training.count}}</span></h4>
+      <img class="trainingImg" src="{{apiUrl}}/api/img/trainings/{{training.idTr}}">
+    </div>
+
+  </div>
+
+</ion-content>
+
+
+
+<div class="modal" id="profileModal"><div class="modal-container">
+  <h2 class="modal-header" id="modalHeader">معلومات التمرين</h2>
+
+  <div class="modal-body" *ngIf="isUserModal">
+    <div id="userModalTop">
+      <img src="{{apiUrl}}/api/img/users/{{user.idUs}}">
+      <h2>{{user.name}}</h2>
+    </div>
+
+    <div class="modal-information">
+      <h2>الجسم</h2>    
+      <hr>
+      <h3><span>وزن اللاعب : </span>{{userDetails['wieght']}}</h3>
+      <h3><span>طول اللاعب : </span>{{userDetails['tall']}}</h3>
+      <h3><span>قطر الخصر : </span>{{userDetails['waistDiameter']}}</h3>
+      <h3><span>قطر الذراع : </span>{{userDetails['armDiameter']}}</h3>
+      <h3><span>قطر الفخذ : </span>{{userDetails['legDiameter']}}</h3>
+      <h3><span>عرض الظهر : </span>{{userDetails['backWidth']}}</h3>
+    </div>
+    <div class="modal-information">
+      <h2>الحساب</h2>    
+      <hr>
+      <h3 class="smallInfo"><span>نوع الحساب : </span>{{user.joinType}}</h3>
+      <h3 class="smallInfo"><span>تاريخ التجديد : </span>{{user.joinDay}}</h3>
+      <h3 class="smallInfo"><span>تأريخ الانضمام : </span>{{user.joinDate}}</h3>
+    </div>
+  </div>
+
+
+  <div class="modal-body" *ngIf="!isUserModal">
+    <img src="{{apiUrl}}/api/img/trainings/{{training.idTr}}">
+    <h2>{{training.name}}</h2>
+    <div class="modal-information">
+      <h2>التفاصيل</h2>    
+      <hr>
+      <h3><span>التكرار : </span>{{training.count}}</h3>
+      <h3><span>الشرح : </span>{{training.body}}</h3>
+    </div>
+    <iframe width="100%" height="300" src="https://www.youtube.com/embed/1art4c_KgRQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <h2 class="modal-footer" (click)="closeModal()">اغلاق</h2>
+</div></div>

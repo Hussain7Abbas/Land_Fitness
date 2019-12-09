@@ -1,12 +1,12 @@
 <ion-content >
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
+    <img class="headerImg" src="assets/imgs/productsHeader.png">
 
-    <div><img src="assets/imgs/product.png"></div>
     <div class="content">
-
+        
         <div class="card" *ngFor="let product of products">
             <h2 class="card-title">{{product.name}}</h2>
-            <img class="card-img" src="assets/imgs/product1.png"/>    
+            <img class="card-img" src="{{apiUrl}}/api/img/products/{{product.idPr}}"/>    
             <div class="card-footer">
                 <pre id="cardBody{{product.idPr}}">{{product.body}}</pre>
                 <h2 class="productPrice">{{product.price}}<span style="font-size: 18px;">&nbsp;د.ع</span></h2>
@@ -16,6 +16,5 @@
 
         <ion-infinite-scroll threshold="30px" (ionInfinite)="doScroll($event)"><ion-infinite-scroll-content loadingSpinner="null"><img id="loadingSVG" src="../../assets/loadingSVGB.svg"></ion-infinite-scroll-content></ion-infinite-scroll>
     </div>
-
 
 </ion-content>
