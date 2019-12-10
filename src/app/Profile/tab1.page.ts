@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { LandfitnessDBService } from "../landfitness-db.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tab1',
@@ -45,7 +45,7 @@ export class Tab1Page {
     backWidth: ""
   };
 
-  constructor(public landFitnessDB:LandfitnessDBService, private alertCtrl: AlertController) {}
+  constructor(private landFitnessDB:LandfitnessDBService, public sanitizer: DomSanitizer) {}
 
   ngOnInit(){
     this.loadData()
@@ -59,28 +59,19 @@ export class Tab1Page {
     })
   }
 
-  async presentAlert(message) {
-    const alert = await this.alertCtrl.create({
-      header: 'اشتراك القاعة',
-      message: message,
-      buttons: ['OK'],
-    });
-    await alert.present();
-    let result = await alert.onDidDismiss();
-    console.log(result);
-  }
+
 
   loadData(){
     this.trainings = [];
     return new Promise((resolve)=>{
       if (localStorage.getItem("user") == "deleted"){
-        this.presentAlert('لقد تم حذف حسابك من القاعة من قبل الادارة.');
+        this.landFitnessDB.presentAlert('اشتراك القاعة', 'لقد تم حذف حسابك من القاعة من قبل الادارة.');
         this.isUser = false;
       }else if (localStorage.getItem("user") !== null) {
         this.isUser = true;
         this.user = JSON.parse(localStorage.getItem("user"));
         if (this.userDays(this.user.joinDay) < 0) {
-          this.presentAlert('لقد انتهى اشتراكك في القاعة يرجى تجديد الاشتراك لتتمكن من استخدام حسابك فيها.');
+          this.landFitnessDB.presentAlert('اشتراك القاعة', 'لقد انتهى اشتراكك في القاعة يرجى تجديد الاشتراك لتتمكن من استخدام حسابك فيها.');
         }else{
           this.cources =  JSON.parse(this.user.cource);
           this.trainings = this.cources[this.courceDay - 1];
@@ -95,13 +86,13 @@ export class Tab1Page {
     if (this.signInIdUs.length == 27) {
       this.landFitnessDB.getOneData('users', this.signInIdUs).then(user=>{
         if (user['message'] == 'User Not Found!'){
-          this.presentAlert('معرف اللاعب غير موجود يرجى التأكد من كتابته بصورة صحيحة.');
+          this.landFitnessDB.presentAlert('اشتراك القاعة', 'معرف اللاعب غير موجود يرجى التأكد من كتابته بصورة صحيحة.');
         }else{
           localStorage.setItem('user', JSON.stringify(user['data']));
         }
         this.loadData();
       })
-    }else{this.presentAlert('خطأ في معرف اللاعب، يجب ان يتكون من 27 حرف ورقم.')}
+    }else{this.landFitnessDB.presentAlert('اشتراك القاعة', 'خطأ في معرف اللاعب، يجب ان يتكون من 27 حرف ورقم.')}
   }
 
   isUserModal = true;
@@ -120,8 +111,8 @@ export class Tab1Page {
           idTr: training.idTr,
           name: training.name,
           count: training.count,
-          body: theTraining['body'],
-          videoUrl: theTraining['videoUrl']
+          body: JSON.parse(theTraining['data'].details).body,
+          videoUrl: JSON.parse(theTraining['data'].details).videoUrl
         }
       })
       console.log(this.training);
@@ -141,5 +132,34 @@ export class Tab1Page {
     this.courceDay = day;
     this.loadData();
   }
+
+  getImg(idTr: string){if (navigator.onLine) {return this.apiUrl + "api/img/trainings/" + idTr;
+              }else{return "assets/imgs/trainings.png"}}
+  getImgU(idUs: string){if (navigator.onLine) {return this.apiUrl + "api/img/users/" + idUs;
+              }else{return "assets/imgs/users.png"}}
   
+  checkTraining(idTr: string){
+    if (document.getElementById('CHECK' + idTr).getAttribute('src') == "../../assets/imgs/checkedImg.png") {
+      document.getElementById('CHECK' + idTr).setAttribute('src', "../../assets/imgs/uncheckedImg.png");
+      document.getElementById(idTr).style.backgroundColor = "white";
+    }else{
+      document.getElementById('CHECK' + idTr).setAttribute('src', "../../assets/imgs/checkedImg.png");
+      document.getElementById(idTr).style.backgroundColor = "#F2FFF2";
+    }
+  }
+
+  checkYoutubeUrl(url: string){
+    if (url.length > 0) {
+      if (url.indexOf('watch?v=') !== -1) {
+        let img = new Image();
+        img.src = "http://img.youtube.com/vi/" + String(url).split('watch?v=')[1].substr(0, 11) + "/mqdefault.jpg";
+        return (img.width !== 120)
+      }else{return false}
+    }
+  }
+
+  getVideoUrl(url: string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + String(url).split('watch?v=')[1].substr(0, 11))
+  }
+
 }

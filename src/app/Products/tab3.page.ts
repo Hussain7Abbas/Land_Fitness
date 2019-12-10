@@ -12,7 +12,7 @@ export class Tab3Page {
 
   products = [];
 
-  constructor(public landFitnessDB:LandfitnessDBService) {}
+  constructor(private landFitnessDB:LandfitnessDBService) {}
   
   ngOnInit(){
     this.loadData("2700-10-26")
@@ -36,14 +36,14 @@ export class Tab3Page {
     return new Promise((resolve)=>{
       document.getElementById('loadingSVG').style.display= "block";
       this.landFitnessDB.getData("products", idPr).then(products=>{
+        if (products['message'] == 'offline') {this.products = []}
         products["data"].forEach(product => {
           let newProduct = JSON.parse(product["details"]);
           this.products.push({
             "idPr" : product["idPr"],
             "name" : newProduct.name,
             "price" : String(newProduct.price).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-            "body" : newProduct.body,
-            "imgURL" : newProduct.imgURL
+            "body" : newProduct.body
           })
         });
         console.log(this.products);
@@ -55,5 +55,8 @@ export class Tab3Page {
   // ============== Front End ==============
   showMore(idPr: string){if(document.getElementById("cardButton" + idPr).innerHTML == "&nbsp;&nbsp;المزيد"){document.getElementById("cardButton"  + idPr).innerHTML = "&nbsp;&nbsp;اقل"; document.getElementById("cardBody" + idPr).style.display = "block";
             }else{document.getElementById("cardButton" + idPr).innerHTML = "&nbsp;&nbsp;المزيد"; document.getElementById("cardBody"  + idPr).style.display = "none";} }
+
+  getImg(idPr: string){if (navigator.onLine) {return this.apiUrl + "api/img/products/" + idPr;
+                      }else{return "assets/imgs/products.png"}}
 
 }

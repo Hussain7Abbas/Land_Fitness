@@ -36,14 +36,14 @@ export class Tab2Page {
     return new Promise((resolve)=>{
       document.getElementById('loadingSVG').style.display= "block";
       this.landFitnessDB.getData("posts", idPo).then(posts=>{
+        if (posts['message'] == 'offline') {this.posts = []}
         posts["data"].forEach(post => {
           let newPost = JSON.parse(post["details"]);
           this.posts.push({
             "idPo" : post["idPo"],
             "title" : newPost.title,
             "body" : newPost.body,
-            "imgURL" : newPost.imgURL,
-            "date" : newPost.date,
+            "date" : newPost.date
           })
         });
         console.log(this.posts);
@@ -55,5 +55,8 @@ export class Tab2Page {
   // ============== Front End ==============
   showMore(idPo: string){if(document.getElementById("cardButton" + idPo).innerHTML == "عرض المزيد"){document.getElementById("cardButton"  + idPo).innerHTML = "عرض اقل"; document.getElementById("cardBody" + idPo).style.maxHeight = "max-content";
             }else{document.getElementById("cardButton" + idPo).innerHTML = "عرض المزيد"; document.getElementById("cardBody"  + idPo).style.maxHeight = "70px";} }
+
+  getImg(idPo: string){if (navigator.onLine) {return this.apiUrl + "api/img/posts/" + idPo;
+  }else{return "assets/imgs/posts.png"}}
 
 }

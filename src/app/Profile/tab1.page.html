@@ -18,7 +18,7 @@
     </div>
     <div class="circleDiv">
       <h4>الايام المتبقية</h4>
-      <div class="circle" [ngStyle]="{'border-color': userDays(user.joinDay) > 20 ? '#009e45' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}"><h2 [ngStyle]="{'color': userDays(user.joinDay) > 20 ? '#009e45' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}" dir="ltr"><span>{{userDays(user.joinDay)}}</span></h2></div>
+      <div class="circle" [ngStyle]="{'border-color': userDays(user.joinDay) > 20 ? '#17AF85' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}"><h2 [ngStyle]="{'color': userDays(user.joinDay) > 20 ? '#17AF85' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}" dir="ltr"><span>{{userDays(user.joinDay)}}</span></h2></div>
     </div>
   </div>
   <button id="userInfoButton" type="button" (click)="openModal('user', 'user')">معلومات اللاعب</button>
@@ -29,9 +29,9 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content pullingIcon="none"></ion-refresher-content></ion-refresher>
   <img class="headerImg" src="assets/imgs/coursesHeader.png" >
 
-  <ion-item>
+  <ion-item id="courceDay">
     <ion-label>تمارين اليوم</ion-label>
-    <ion-select id="courceDay" class="tools-input" #day (ionChange)="openDay(day.value)" cancelText = "الغاء" [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
+    <ion-select class="tools-input" #day (ionChange)="openDay(day.value)" cancelText = "الغاء" [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
       <ion-select-option *ngIf="cources[0]?.length > 0" selected value="1">الأول</ion-select-option>
       <ion-select-option *ngIf="cources[1]?.length > 0" value="2">الثاني</ion-select-option>
       <ion-select-option *ngIf="cources[2]?.length > 0" value="3">الثالث</ion-select-option>
@@ -42,9 +42,12 @@
   <div class="content">
     <div *ngIf="trainings.length == 0"><img src="../../assets/imgs/error404.png" style="width: 40%; display: block; margin: 5% auto;"><h2 style="width: 100%; text-align: center;">لا توجد تمارين لعرضها</h2></div>
 
-    <div class="card" *ngFor="let training of trainings" (click)="openModal(training, 'training')">
-      <h4 class="trainingName">{{training.name}}<br><span>{{training.count}}</span></h4>
-      <img class="trainingImg" src="{{apiUrl}}/api/img/trainings/{{training.idTr}}">
+    <div class="card" *ngFor="let training of trainings" id="{{training.idTr}}">
+      <img class="trainingCheckBox" id="CHECK{{training.idTr}}" (click)="checkTraining(training.idTr)" src="../../assets/imgs/uncheckedImg.png">
+      <div (click)="openModal(training, 'training')" style="display: flex;">
+        <h4 class="trainingName">{{training.name}}<br>{{training.count.split(' X ')[0]}}<span style="margin: 0 5px;">X</span>{{training.count.split(' X ')[1]}}</h4>
+        <img class="trainingImg" src="{{getImg(training.idTr)}}">
+      </div>
     </div>
 
   </div>
@@ -58,19 +61,19 @@
 
   <div class="modal-body" *ngIf="isUserModal">
     <div id="userModalTop">
-      <img src="{{apiUrl}}/api/img/users/{{user.idUs}}">
+      <img src="{{getImgU(user.idUs)}}">
       <h2>{{user.name}}</h2>
     </div>
 
-    <div class="modal-information">
+    <div class="modal-information" *ngIf="user.details.length > 91">
       <h2>الجسم</h2>    
       <hr>
-      <h3><span>وزن اللاعب : </span>{{userDetails['wieght']}}</h3>
-      <h3><span>طول اللاعب : </span>{{userDetails['tall']}}</h3>
-      <h3><span>قطر الخصر : </span>{{userDetails['waistDiameter']}}</h3>
-      <h3><span>قطر الذراع : </span>{{userDetails['armDiameter']}}</h3>
-      <h3><span>قطر الفخذ : </span>{{userDetails['legDiameter']}}</h3>
-      <h3><span>عرض الظهر : </span>{{userDetails['backWidth']}}</h3>
+      <h3 *ngIf="userDetails['wieght'] !== ''"><span>وزن اللاعب : </span>{{userDetails['wieght']}}</h3>
+      <h3 *ngIf="userDetails['tall'] !== ''"><span>طول اللاعب : </span>{{userDetails['tall']}}</h3>
+      <h3 *ngIf="userDetails['waistDiameter'] !== ''"><span>قطر الخصر : </span>{{userDetails['waistDiameter']}}</h3>
+      <h3 *ngIf="userDetails['armDiameter'] !== ''"><span>قطر الذراع : </span>{{userDetails['armDiameter']}}</h3>
+      <h3 *ngIf="userDetails['legDiameter'] !== ''"><span>قطر الفخذ : </span>{{userDetails['legDiameter']}}</h3>
+      <h3 *ngIf="userDetails['backWidth'] !== ''"><span>عرض الظهر : </span>{{userDetails['backWidth']}}</h3>
     </div>
     <div class="modal-information">
       <h2>الحساب</h2>    
@@ -83,15 +86,15 @@
 
 
   <div class="modal-body" *ngIf="!isUserModal">
-    <img src="{{apiUrl}}/api/img/trainings/{{training.idTr}}">
-    <h2>{{training.name}}</h2>
+    <img style="display: block; margin: auto" src="{{getImg(training.idTr)}}">
+    <h2 style="margin-top: 10px;">{{training.name}}</h2>
     <div class="modal-information">
       <h2>التفاصيل</h2>    
       <hr>
-      <h3><span>التكرار : </span>{{training.count}}</h3>
+      <h3><span>التكرار : </span>{{training.count.split(' X ')[0]}}<span style="margin: 0 5px;">X</span>{{training.count.split(' X ')[1]}}</h3>
       <h3><span>الشرح : </span>{{training.body}}</h3>
     </div>
-    <iframe width="100%" height="300" src="https://www.youtube.com/embed/1art4c_KgRQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe *ngIf="checkYoutubeUrl(training.videoUrl)" width="100%" height="300" [src]="getVideoUrl(training.videoUrl)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 
   <h2 class="modal-footer" (click)="closeModal()">اغلاق</h2>

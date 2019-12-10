@@ -6,7 +6,7 @@
         
         <div class="card" *ngFor="let product of products">
             <h2 class="card-title">{{product.name}}</h2>
-            <img class="card-img" src="{{apiUrl}}/api/img/products/{{product.idPr}}"/>    
+            <img class="card-img" src="{{getImg(product.idPr)}}"/>    
             <div class="card-footer">
                 <pre id="cardBody{{product.idPr}}">{{product.body}}</pre>
                 <h2 class="productPrice">{{product.price}}<span style="font-size: 18px;">&nbsp;د.ع</span></h2>

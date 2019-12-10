@@ -13,17 +13,19 @@ export class Tab4Page {
   heroes = [];
 
   hero = {
-    idUs: '',
+    idUs: '000',
     name: '',
-    details: {
-      wieght: "",
-      tall: "",
-      waistDiameter: "",
-      legDiameter: "",
-      armDiameter: "",
-      backWidth: ""
-    }
+    details: ''
   };
+
+  heroDetails = {
+    wieght: "",
+    tall: "",
+    waistDiameter: "",
+    legDiameter: "",
+    armDiameter: "",
+    backWidth: ""
+  }
 
   constructor(public landFitnessDB:LandfitnessDBService) {}
 
@@ -49,13 +51,9 @@ export class Tab4Page {
     return new Promise((resolve)=>{
       document.getElementById('loadingSVG').style.display= "block";
       this.landFitnessDB.getData("heroes", idUs).then(heroes=>{
+        if (heroes['message'] == 'offline') {this.heroes = []}
         heroes["data"].forEach(hero => {
-          let heroDetails = JSON.parse(hero.details);
-          this.heroes.push({
-            idUs: hero.idUs,
-            name: hero.name,
-            details: heroDetails
-          });
+          this.heroes.push(hero);
         });
         console.log(this.heroes);
       }).then(()=>{resolve('success'), document.getElementById('loadingSVG').style.display= "none";})
@@ -65,7 +63,13 @@ export class Tab4Page {
   openModal(hero){
     document.getElementById('heroModal').style.display = 'flex';
     this.hero = hero;
+    this.heroDetails = JSON.parse(hero.details);
   }
   closeModal(){document.getElementById('heroModal').style.display = 'none';}
+
+  getImg(idUs: string){if (navigator.onLine) {return this.apiUrl + "api/img/usersR/" + idUs;
+              }else{return "assets/imgs/usersR.png"}}
+
+  getWieght(details){return JSON.parse(details)['wieght']}
 
 }

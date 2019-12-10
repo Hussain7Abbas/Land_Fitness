@@ -4,8 +4,8 @@
 
   <div class="content">
     <div class="card" *ngFor="let hero of heroes" (click)="openModal(hero)">
-      <h4 class="heroName">{{hero.name}}<br>الوزن:&nbsp;<span>{{hero.details['wieght']}}</span></h4>
-      <img class="heroImg" src="{{apiUrl}}/api/img/usersR/{{hero.idUs}}">             
+      <h4 class="heroName">{{hero.name}}<br>الوزن:&nbsp;<span>{{getWieght(hero.details)}}</span></h4>
+      <img class="heroImg" src="{{getImg(hero.idUs)}}">             
     </div>
 
     <ion-infinite-scroll threshold="30px" (ionInfinite)="doScroll($event)"><ion-infinite-scroll-content loadingSpinner="null"><img id="loadingSVG" src="../../assets/loadingSVGB.svg"></ion-infinite-scroll-content></ion-infinite-scroll>
@@ -19,21 +19,21 @@
 
   <div class="modal-body">
     <div id="userModalTop">
-      <img src="{{apiUrl}}/api/img/usersR/{{hero.idUs}}">
+      <img src="{{getImg(hero.idUs)}}">
       <h2>{{hero.name}}</h2>
     </div>
 
-    <div class="modal-information">
-      <h2>التفاصيل</h2>    
+    <div class="modal-information" *ngIf="hero.details.length > 91">
+      <h2>الجسم</h2>    
       <hr>
-      <h3><span>وزن اللاعب : </span>{{hero.details['wieght']}}</h3>
-      <h3><span>طول اللاعب : </span>{{hero.details['tall']}}</h3>
-      <h3><span>قطر الخصر : </span>{{hero.details['waistDiameter']}}</h3>
-      <h3><span>قطر الذراع : </span>{{hero.details['armDiameter']}}</h3>
-      <h3><span>قطر الفخذ : </span>{{hero.details['legDiameter']}}</h3>
-      <h3><span>عرض الظهر : </span>{{hero.details['backWidth']}}</h3>
+      <h3 *ngIf="heroDetails['wieght'] !== ''"><span>وزن اللاعب : </span>{{heroDetails['wieght']}}</h3>
+      <h3 *ngIf="heroDetails['tall'] !== ''"><span>طول اللاعب : </span>{{heroDetails['tall']}}</h3>
+      <h3 *ngIf="heroDetails['waistDiameter'] !== ''"><span>قطر الخصر : </span>{{heroDetails['waistDiameter']}}</h3>
+      <h3 *ngIf="heroDetails['armDiameter'] !== ''"><span>قطر الذراع : </span>{{heroDetails['armDiameter']}}</h3>
+      <h3 *ngIf="heroDetails['legDiameter'] !== ''"><span>قطر الفخذ : </span>{{heroDetails['legDiameter']}}</h3>
+      <h3 *ngIf="heroDetails['backWidth'] !== ''"><span>عرض الظهر : </span>{{heroDetails['backWidth']}}</h3>
     </div>
-  </div>
 
+  </div>
   <h2 class="modal-footer" (click)="closeModal()">اغلاق</h2>
-</div></div>
+</div>

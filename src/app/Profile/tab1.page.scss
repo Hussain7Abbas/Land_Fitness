@@ -11,7 +11,7 @@
 } .circle *{margin: auto; font-weight: bold;} .circle img{width: 60%;}
 
 #userInfoButton{
-  height: 30px; width: 50%; display: block; margin: 3% auto;
+  height: 36px; width: 50%; display: block; margin: 3% auto;
   background-color: white; border: 1px solid #0050A1; border-radius: 30px;
   font-size: 16px; font-weight: bold; color: #0050A1;
 }
@@ -19,9 +19,8 @@
 
 
 
-
-
-.card{height: 110px; padding: 0; display: flex;}
+.card{height: 110px; padding: 0;}
+.trainingCheckBox{border-radius: 100px; position: absolute; width: 32px; height: 32px; margin: 6px; margin-top: 70px; background-color: white;}
 
 .trainingImg{
   float: left;
@@ -36,7 +35,7 @@
   float: right; margin: 15px 10px; flex-grow: 1;
   font-weight: bold; text-align: center; color: black; line-height: 40px;
   overflow-x: scroll; overflow-y: hidden; white-space: nowrap;
-}.trainingName span{color:red;}
+}.trainingName span{color: #e80000;}
 
 #signInForm{width: 100%; height: 100%; display: flex; background-color: #000442;}
 #signInDiv{width: 70%; margin: auto; text-align: center; color: white;}
@@ -45,3 +44,5 @@
 
 
 .smallInfo{font-size: 20px;}.smallInfo span{font-size: 24px;};
+
+#courceDay{border-radius: 10px; margin: 0 2%; box-shadow: 0px 1px 3px #b9b9b9;}
