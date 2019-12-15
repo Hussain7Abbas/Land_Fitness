@@ -18,21 +18,31 @@ export class LandfitnessDBService {
 
   constructor(private _HttpClient:HttpClient, private toastCtrl:ToastController, private alertCtrl:AlertController) { }
 
-  getDateTime(type1: string){
+  getDateTime(type: string){
     let date = new Date();
-    if (type1 == "date"){
+    if (type == "date"){
       return String(date.getDate()).padStart(2, '0') + '/' +
                   String(date.getMonth() + 1).padStart(2, '0') + '/' +
                   date.getFullYear();
-    }else if (type1 == "dateTime"){
+    }else if (type == "dateTime"){
       return String(date.getDate()).padStart(2, '0') + '/' +
                   String(date.getMonth() + 1).padStart(2, '0') + '/' +
                   date.getFullYear() + '-' +
-                  String(date.getHours() + 1).padStart(2, '0') + ':' +
-                  String(date.getMinutes() + 1).padStart(2, '0') + ':' +
-                  String(date.getSeconds() + 1).padStart(2, '0');
+                  String(date.getHours()).padStart(2, '0') + ':' +
+                  String(date.getMinutes()).padStart(2, '0') + ':' +
+                  String(date.getSeconds()).padStart(2, '0');
     }
+  }
 
+  // ===================== make random id ========================
+  getId(){
+    let characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomString = ""
+    for (let i = 0; i < 7 + 1; i++) {
+        let index = Math.floor(Math.random() * characters.length);
+        randomString += characters[index];
+    }
+    return randomString;
   }
 
   getData(pageName: string, lastDataId: string){
@@ -62,9 +72,9 @@ export class LandfitnessDBService {
     });
   }
 
-  getOneData(pageName: string, lastDataId: string){
+  getOneData(pageName: string, dataId: string){
     return new Promise((resolve, reject) => {
-      this._HttpClient.get(this.apiUrl + 'api/' + pageName + '/' + lastDataId, {headers:this.headers})
+      this._HttpClient.get(this.apiUrl + 'api/' + pageName + '/' + dataId, {headers:this.headers})
       .subscribe(res => {
         resolve(res);
       }, (err) => {
@@ -99,6 +109,44 @@ export class LandfitnessDBService {
     });
   }
 
+  deleteData(pageName: string, dataId: string){
+    return new Promise((resolve, reject) => {
+      this._HttpClient.delete(this.apiUrl + 'api/' + pageName + '/' + dataId, {headers:this.headers})
+      .subscribe(res => {
+        console.log(res);
+        resolve(res);
+      }, (err) => {
+        console.log(err);
+        reject(err);
+      });
+    });
+  }
+
+
+  updateMessages(dataId: string){
+    console.log(dataId);
+    if (localStorage.getItem('localMessages') !== '[]') {
+      let newMessages = JSON.parse(localStorage.getItem('localMessages'))
+      console.log(newMessages);
+      newMessages.forEach(message => {
+        message.time = this.getDateTime("dateTime");
+      });
+      console.log(newMessages);
+      
+      return new Promise((resolve, reject) => {
+        this._HttpClient.put(this.apiUrl + 'api/contacts/messages/' + dataId, JSON.stringify({messages: JSON.stringify(newMessages), status: false}), {headers:this.headers})
+        .subscribe(res => {
+          console.log(res['data']);
+          localStorage.setItem('localMessages', '[]');
+          resolve(res['data']);
+        }, (err) => {
+          console.log(err['error']);
+          reject(err['error']);
+        });
+      });
+    }
+    
+  }
 
   async presentToast(message, color) {  
     const toast = await this.toastCtrl.create({

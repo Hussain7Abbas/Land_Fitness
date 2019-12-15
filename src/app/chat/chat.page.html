@@ -1,29 +1,39 @@
 <ion-header slot="top">
   <h3 class="navBarTitle">مراسلة القاعة</h3>
-  <img class="navBarIcons" routerLink="/tabs" src="assets/icon/arrow-left.svg"  style="float: left;">
+  <img class="navBarIcons" routerLink="/tabs" src="assets/icon/arrowDown.svg"  style="float: left;">
 </ion-header>
 
-<ion-content padding>
-  <div   class="Msg-Content" >
-       <p class="EditParagraphStyle"> مرحبا  كم هو سعر الاشتراك الرشاقة للقاعة </p>
+<ion-content #content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <!-- ===== CHAT BODY ==Start== -->
+  <div class="chat-container" id="chatNoMessages" *ngIf="contact.messages === '[]'" style="display: flex;">
+    <h3 style="margin: auto;">لا توجد رسائل لعرضها</h3>
+  </div>
+  <div class="chat-container" id="chat-container" *ngIf="contact.messages !== '[]'">
+    <div *ngFor="let message of messages" class="messageDiv">
+      <div class="message" [ngClass]="{'my-message': message.user == 1, 'cos-message': message.user == 0}">
+        <img src="../../assets/imgs/chatW.png" *ngIf="message.user == 0">
+        <img src="../../assets/imgs/chatY.png" *ngIf="message.user == 1">
+        <pre>{{message.body}}</pre>
+      </div>
+      <h6>{{message.time}}</h6>
     </div>
-  <p class="EditTimeChat">9:00 AM, Today</p>
-  <div class="Msg-Contenter">
-       <p class="EditParagraphStyle">مرحبا  كم هو سعر الاشتراك الرشاقة للقاعة </p>
-    </div>
-  <p class="EditTimeChat1">9:00 AM, Today</p> 
-  <div class="Msg-Content">
-       <p class="EditParagraphStyle"> شكرا لك </p>
-    </div>
-  <p class="EditTimeChat">9:00 AM, Today</p>         
-  </ion-content>
+    <img class="loadingSVG" id="loadingSVGMessages" src="../../assets/loadingSVGB.svg">
+  </div>
+  <!-- ===== CHAT BODY ==End== -->
+  <div class="send-button" id="scrollDownButton" (click)="scrollBottom()">
+    <div id="newMessagesNo" *ngIf="newMessagesNo > 0"><h6>{{newMessagesNo}}</h6></div>
+    <img src="../../assets/icon/arrowDown.svg">
+  </div>
+</ion-content>
+
+<!-- ===== CHAT FOOTER ==Start== -->
 <ion-footer>
-  <ion-toolbar>
-    <ion-title>
-      <ion-icon class="IconSend"size="large" name="paper-plane">
-         </ion-icon>       
-      <ion-textarea class="Msg_Footer" placeholder="اكتب رسالتك هنا ولك" >  
-         </ion-textarea>       
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+    <div id="send-div">
+        <div class="send-button" (click)="sendMessage()">
+          <img src="../../assets/imgs/sendIcon.png" *ngIf="!isSending">
+          <img src="../../assets/loadingSVGB.svg" *ngIf="isSending">
+        </div>
+        <textarea id="sendMessageTextarea" (keydown)="textAreaEnter($event)" type="text" disabled placeholder="اكتب رسالتك ..." [(ngModel)]="newMessage.body"></textarea>
+    </div>
+</ion-footer>
+  <!-- ===== CHAT FOOTER ==End== -->

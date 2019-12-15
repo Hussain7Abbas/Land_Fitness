@@ -41,4 +41,8 @@ export class AboutPage implements OnInit {
   }
   closeModal(){document.getElementById('heroModal').style.display = 'none';}
 
+  copyToClipboard(value){
+    navigator.clipboard.writeText(value);
+  }
+
 }

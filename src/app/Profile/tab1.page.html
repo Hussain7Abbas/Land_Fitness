@@ -45,7 +45,7 @@
     <div class="card" *ngFor="let training of trainings" id="{{training.idTr}}">
       <img class="trainingCheckBox" id="CHECK{{training.idTr}}" (click)="checkTraining(training.idTr)" src="../../assets/imgs/uncheckedImg.png">
       <div (click)="openModal(training, 'training')" style="display: flex;">
-        <h4 class="trainingName">{{training.name}}<br>{{training.count.split(' X ')[0]}}<span style="margin: 0 5px;">X</span>{{training.count.split(' X ')[1]}}</h4>
+        <h4 class="trainingName">{{training.name}}<br>{{training.count.split('X')[0]}}<span style="margin: 0 5px;">X</span>{{training.count.split('X')[1]}}</h4>
         <img class="trainingImg" src="{{getImg(training.idTr)}}">
       </div>
     </div>
@@ -84,14 +84,13 @@
     </div>
   </div>
 
-
   <div class="modal-body" *ngIf="!isUserModal">
     <img style="display: block; margin: auto" src="{{getImg(training.idTr)}}">
     <h2 style="margin-top: 10px;">{{training.name}}</h2>
     <div class="modal-information">
       <h2>التفاصيل</h2>    
       <hr>
-      <h3><span>التكرار : </span>{{training.count.split(' X ')[0]}}<span style="margin: 0 5px;">X</span>{{training.count.split(' X ')[1]}}</h3>
+      <h3><span>التكرار : </span>{{training.count.split('X')[0]}}<span style="margin: 0 5px;">X</span>{{training.count.split('X')[1]}}</h3>
       <h3><span>الشرح : </span>{{training.body}}</h3>
     </div>
     <iframe *ngIf="checkYoutubeUrl(training.videoUrl)" width="100%" height="300" [src]="getVideoUrl(training.videoUrl)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -1,60 +1,72 @@
 .navBarIcons{height: 12px; margin: 18px 20px;}
 
+.chat-container{padding: 20px; overflow-x: hidden;}
 
-.EditParagraphStyle{
-   word-wrap: inherit;
-   padding-right: 10px;
-}
-.EditTimeChat{
-   margin: 0px 0px 0px 0px;
-   float: right;
-   color:#BCC5D3;
-}
-.EditTimeChat1{
-   margin: 0px 0px 0px 0px;
-   float: left;
-   color:#BCC5D3;
-}
-.IconSend{
-   color:#FFF700;
-   float: right;
-   margin-top:10px;
-}
-.Msg_Footer{
-   height: 32px;
-   width: 282px;
-   border: 2px solid #FFF700; 
-   border-radius:10px ;
-   text-align: right;
-   font-size: 18px;
-   padding-left: 10px;
-   padding-right: 10px;
-   margin-bottom: 5px;
-   color: black;
-}
-.Msg-Content{
-   flex: content;
-   border:2px solid #FFF700;
-   width: 270px;
-   height: 39; 
-   float: right;
-   border-radius: 20px;
-   text-align: right;
-   background-color: #FFF700;
-   color: black;
-   padding-right: 5px;
-}
-.Msg-Contenter{
-   flex: content;
-   border:2px solid #E2E8ED;
-   width: 270px;  
-   text-align: right; 
-   float: left;
-   border-radius: 20px;
-   overflow:unset;
-   background-color:#E2E8ED;
-   padding-right: 5px;
-   color:black;
+.message{
+  height: fit-content;
+  border-radius: 10px;
+  max-width: 75%;
+  clear: both;
 }
 
+// .messageDiv{margin-bottom: 20px;}
 
+.message pre{margin: 0; max-height: fit-content; padding: 10px 15px; font-size: 16px; line-height: 20px; text-align: justify; overflow-wrap: break-word; white-space: pre-wrap;}
+.message ~ h6{color: #BCC5D3; margin: 5px; margin-bottom: 10px; font-weight: normal; clear: both;}
+
+.my-message{
+  float: right;
+  background-color: #FFFF00;
+  border: 1px solid #ECECEC;
+}
+.my-message ~ h6{float: right;}
+.my-message img{float: right; margin-top: 10px; margin-right: -8px; position: absolute;}
+
+.cos-message{
+  float: left;
+  background-color: #FAFAFA;
+  border: 1px solid #ECECEC;
+}
+.cos-message ~ h6{float: left;}
+.cos-message img{float: left; margin-top: 10px; left: 12px; position: absolute;}
+
+#send-div{
+  background-color: #f7f7f7; box-shadow: 0 -3px 3px #edbaff;
+  height: auto; max-height: 250px;
+  border-top: 1px solid #CECECE; border-radius: 0 0 20px 20px;
+  padding: 5px 15px;
+  display: flex;
+  flex: content;
+  position: relative;
+}
+
+#send-div textarea{
+  text-anchor: middle; font-size: 16px; line-height: 17px;
+  height: 38px; max-height: 200px;
+  border: 1px solid #FFFF00; border-radius: 20px;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.send-button{
+  float: right;
+  display: flex;
+  margin-left: 10px;
+  height: 39px; width: 39px;
+  border-radius: 60px;
+  background-color: #FFFF00;
+}
+
+.send-button img{width: 22px; margin: auto;}
+
+#scrollDownButton{
+  height: 50px; width: 50px;
+  position: fixed; bottom: -5%; left: 5%;
+  transition: bottom .5s;
+  box-shadow: -2px 2px 4px #00000040;
+}
+
+#newMessagesNo{background-color: #e80000; width: 25px; height: 25px; display: flex; position: absolute; border-radius: 60px; margin-right: -5px; margin-top: -6px; color: white;}
+#newMessagesNo h6{margin: auto;}
+
+#loadingSVGMessages{display: block;}

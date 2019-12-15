@@ -1,9 +1,9 @@
 <ion-header slot="top">
   <h3 class="navBarTitle">حول التطبيق</h3>
-  <img class="navBarIcons" routerLink="/tabs" src="assets/icon/arrow-left.svg"  style="float: left;">
+  <img class="navBarIcons" routerLink="/tabs" src="assets/icon/arrowDown.svg"  style="float: left;">
 </ion-header>
 
-<ion-segment color="primary" mode="md" (ionChange)="segmentChanged($event)"  [(ngModel)]="category">
+<ion-segment color="primary" mode="md" [(ngModel)]="category">
   <ion-segment-button mode="md" value="landfitness" checked layout="icon-start" ><ion-label>&nbsp;حول القاعة</ion-label><ion-icon name="information-circle-outline"></ion-icon></ion-segment-button>
   <ion-segment-button mode="md" value="teamwork" layout="icon-start"><ion-label>&nbsp;فريق البرمجة</ion-label><ion-icon name="md-contacts"></ion-icon></ion-segment-button>
 </ion-segment>
@@ -26,9 +26,9 @@
           <h2>التواصل</h2>    
           <hr>
           <div class="contactDetails">
-            <div><img src="assets/imgs/FBIcon.png"><h4>Land Fitness</h4></div>
-            <div><img src="assets/imgs/IGIcon.png"><h4>Land_Fitness1</h4></div>        
-            <div><img src="assets/imgs/phone.svg"><h4>07806116852</h4></div>
+            <div (click)="copyToClipboard('Land Fitness')"><img src="assets/imgs/FBIcon.png"><h4>Land Fitness</h4></div>
+            <div (click)="copyToClipboard('Land_Fitness1')"><img src="assets/imgs/IGIcon.png"><h4>Land_Fitness1</h4></div>        
+            <div (click)="copyToClipboard('07806116852')"><img src="assets/imgs/phone.svg"><h4>07806116852</h4></div>
           </div> 
         </div>
 
@@ -52,8 +52,8 @@
       <!-- =============== Contact Section =============== -->
       <div class="contactSectionYC">
         <div class="contactDetails">
-          <div><img src="assets/imgs/FBIcon.png"><h4>Young Code</h4></div>
-          <div><img src="assets/imgs/phone.svg"><h4>07804834849</h4></div>
+          <div (click)="copyToClipboard('Young Code')"><img src="assets/imgs/FBIcon.png"><h4>Young Code</h4></div>
+          <div (click)="copyToClipboard('07804834849')"><img src="assets/imgs/phone.svg"><h4>07804834849</h4></div>
         </div> 
       </div>
     </ion-list>

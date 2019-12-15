@@ -88,12 +88,31 @@ export class Tab1Page {
         if (user['message'] == 'User Not Found!'){
           this.landFitnessDB.presentAlert('اشتراك القاعة', 'معرف اللاعب غير موجود يرجى التأكد من كتابته بصورة صحيحة.');
         }else{
+          this.checkContactExist(user['data']);
           localStorage.setItem('user', JSON.stringify(user['data']));
         }
         this.loadData();
       })
     }else{this.landFitnessDB.presentAlert('اشتراك القاعة', 'خطأ في معرف اللاعب، يجب ان يتكون من 27 حرف ورقم.')}
   }
+  
+checkContactExist(user){
+  this.landFitnessDB.getOneData('contacts', user.idUs).then(contact=>{
+    if (contact['message'] == 'Contact Not Found!') {
+      let newContact = JSON.parse(localStorage.getItem('contact'));
+      this.landFitnessDB.deleteData('contacts', newContact.idUs)
+
+      if (newContact.messages.length > 0) {newContact.idUs = user.idUs; newContact.name = user.name;}
+
+      this.landFitnessDB.addData('contacts', newContact).then(()=>{
+        localStorage.setItem('contact', JSON.stringify(newContact))
+      })
+    }else{
+      if (JSON.parse(localStorage.getItem('contact')).messages.length > 0) {this.landFitnessDB.deleteData('contacts', JSON.parse(localStorage.getItem('contact')).idUs);}
+      localStorage.setItem('contact', JSON.stringify(contact['data']));
+    }
+  })
+}
 
   isUserModal = true;
   openModal(training, type: string){
