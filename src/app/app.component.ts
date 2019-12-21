@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Network } from '@ionic-native/network/ngx';
 
 import { LandfitnessDBService } from "./landfitness-db.service";
 
@@ -15,9 +15,9 @@ import { LandfitnessDBService } from "./landfitness-db.service";
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private landFitnessDB:LandfitnessDBService
+    private landFitnessDB:LandfitnessDBService,
+    private network: Network
   ) {
     this.initializeApp();
   }
@@ -33,17 +33,38 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
       
+
+
+
       this.setDefaultVariables()
 
-      window.addEventListener('online', event=>{this.handleConnectionChange(event)});
-      window.addEventListener('offline', event=>{this.handleConnectionChange(event)});
+      localStorage.setItem('isOnline', '1')
+      // watch network for a disconnection
+      // this.network.onDisconnect().subscribe(() => {
+      //   if (localStorage.getItem('isOnline') == '1') {
+      //     this.landFitnessDB.presentToast("لا يوجد اتصال انترنت", 'danger')
+      //     localStorage.setItem('isOnline', '0')
+      //   }
+      // });
+
+      // watch network for a connection
+      this.network.onConnect().subscribe(() => {
+        // if (localStorage.getItem('isOnline') == '1') {
+          // this.landFitnessDB.presentToast("عاد اتصال الانترنت", 'success')
+          localStorage.setItem('isOnline', '1')
+          this.loadProfile();
+    
+          if (localStorage.getItem('localMessages') !== '[]') {
+            this.landFitnessDB.updateMessages(JSON.parse(localStorage.getItem('contact')).idUs)
+          }
+        // }
+      });
       
-      if (navigator.onLine) {
+      if (localStorage.getItem('isOnline') == '1') {
         this.loadProfile();
       }else{
-        this.landFitnessDB.presentToast("لا يوجد اتصال انترنت", 'danger')
+        // this.landFitnessDB.presentToast("لا يوجد اتصال انترنت", 'danger')
       }
 
 
@@ -61,19 +82,6 @@ export class AppComponent {
           }
         }
       });
-    }
-  }
-
-  handleConnectionChange(event){
-    if (event.type == "offline") {
-      this.landFitnessDB.presentToast("لا يوجد اتصال انترنت", 'danger')
-    }else if (event.type == "online") {
-      this.landFitnessDB.presentToast("عاد اتصال الانترنت", 'success')
-      this.loadProfile();
-
-      if (localStorage.getItem('localMessages') !== '[]') {
-        this.landFitnessDB.updateMessages(JSON.parse(localStorage.getItem('contact')).idUs)
-      }
     }
   }
 

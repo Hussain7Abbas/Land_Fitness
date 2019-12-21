@@ -14,7 +14,7 @@ export class LandfitnessDBService {
     'content-type' : 'application/json'
   });
 
-  apiUrl = "http://localhost:8000/";
+  apiUrl = "https://landfitnessapi.herokuapp.com/";
 
   constructor(private _HttpClient:HttpClient, private toastCtrl:ToastController, private alertCtrl:AlertController) { }
 
@@ -47,7 +47,7 @@ export class LandfitnessDBService {
 
   getData(pageName: string, lastDataId: string){
     return new Promise((resolve, reject) => {
-      if (navigator.onLine) {
+      if (localStorage.getItem('isOnline') == '1') {
         let headers = new HttpHeaders({
           'content-type' : 'application/json'
         });
@@ -85,7 +85,7 @@ export class LandfitnessDBService {
 
   addData(pageName: string, data: object){
     return new Promise((resolve, reject) => {
-      this._HttpClient.post(this.apiUrl + 'api/' + pageName + '/', JSON.stringify(data), {headers:this.headers})
+      this._HttpClient.post(this.apiUrl + 'api/' + pageName, JSON.stringify(data), {headers:this.headers})
       .subscribe(res => {
         console.log(res['data']);
         resolve(res['data']);
@@ -145,13 +145,38 @@ export class LandfitnessDBService {
         });
       });
     }
-    
   }
+
+  // saveTrainingImgs(){
+  //   let cources = JSON.parse(localStorage.getItem('user')).cource;
+  //   let courcesImgs = [[],[],[],[]]
+  //   for (let i = 0; i < cources.length; i++) {
+  //     cources[i].forEach(training => {
+  //       courcesImgs[i][training.idUs] = this.imgToBase64(this.apiUrl + 'img/training/' + training.idUs);
+  //     });
+  //   }
+  // }
+
+   imgToBase64(img: File){
+    new Promise((resolve, reject) => {
+      // var xhr = new XMLHttpRequest();
+      // xhr.open('get', imgUrl);
+      // xhr.responseType = 'blob';
+      // xhr.onload = ()=>{
+        const reader = new FileReader();
+        reader.readAsDataURL(img);
+        reader.onload = () => resolve(reader.result);
+        console.log(reader.result);
+        reader.onerror = error => reject(error);
+      // }
+    }).then(base64 => {return base64});
+  }
+  
 
   async presentToast(message, color) {  
     const toast = await this.toastCtrl.create({
       message: message,
-      duration: 2000,
+      duration: 1000,
       color: color
     });
     toast.present();

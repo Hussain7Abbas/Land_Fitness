@@ -1,6 +1,6 @@
 <ion-header slot="top">
   <h3 class="navBarTitle">مراسلة القاعة</h3>
-  <img class="navBarIcons" routerLink="/tabs" src="assets/icon/arrowDown.svg"  style="float: left;">
+  <img class="navBarIcons" (click)="dismiss()" src="assets/icon/arrowDown.svg"  style="float: left;">
 </ion-header>
 
 <ion-content #content [scrollEvents]="true" (ionScroll)="onScroll($event)">
@@ -17,7 +17,7 @@
       </div>
       <h6>{{message.time}}</h6>
     </div>
-    <img class="loadingSVG" id="loadingSVGMessages" src="../../assets/loadingSVGB.svg">
+    <img class="loadingSVG" id="loadingSVGMessages" src="../../assets/imgs/loading.png">
   </div>
   <!-- ===== CHAT BODY ==End== -->
   <div class="send-button" id="scrollDownButton" (click)="scrollBottom()">
@@ -31,7 +31,7 @@
     <div id="send-div">
         <div class="send-button" (click)="sendMessage()">
           <img src="../../assets/imgs/sendIcon.png" *ngIf="!isSending">
-          <img src="../../assets/loadingSVGB.svg" *ngIf="isSending">
+          <img src="../../assets/imgs/loading.png" *ngIf="isSending">
         </div>
         <textarea id="sendMessageTextarea" (keydown)="textAreaEnter($event)" type="text" disabled placeholder="اكتب رسالتك ..." [(ngModel)]="newMessage.body"></textarea>
     </div>

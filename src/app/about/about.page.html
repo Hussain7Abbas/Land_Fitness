@@ -1,6 +1,6 @@
 <ion-header slot="top">
   <h3 class="navBarTitle">حول التطبيق</h3>
-  <img class="navBarIcons" routerLink="/tabs" src="assets/icon/arrowDown.svg"  style="float: left;">
+  <img class="navBarIcons" (click)="dismiss()" src="assets/icon/arrowDown.svg"  style="float: left;">
 </ion-header>
 
 <ion-segment color="primary" mode="md" [(ngModel)]="category">
@@ -62,7 +62,7 @@
 
 
 
-<div class="modal" id="heroModal"><div class="modal-container">
+<div class="modal" id="devModal"><div class="modal-container">
   <h2 class="modal-header">معلومات المبرمج</h2>
 
   <div class="modal-body">

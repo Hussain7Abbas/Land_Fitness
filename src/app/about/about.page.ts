@@ -1,5 +1,7 @@
-import { Component, OnInit,ViewChild  } from '@angular/core';
-
+import { Component, OnInit  } from '@angular/core';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { ModalController } from '@ionic/angular';
+import { LandfitnessDBService } from "../landfitness-db.service";
 @Component({
   selector: 'app-about',
   templateUrl: './about.page.html',
@@ -16,12 +18,12 @@ export class AboutPage implements OnInit {
     details: 'رئيس الفريق، مطور ومبرمج لتطبيقات الهواتف الذكية ومواقع الانترنت وبرامج سطح المكتب، ومصمم جرافك.'
   }
 
-  constructor() { }
+  constructor(private clipboard: Clipboard, private modalController: ModalController, private landFitnessDB: LandfitnessDBService) { }
 
   ngOnInit() {}
 
   openModal(userName){
-    document.getElementById('heroModal').style.display = 'flex';
+    document.getElementById('devModal').style.display = 'flex';
     if (userName ==  'hussain') {
       this.developer = {
         engName: userName,
@@ -39,10 +41,13 @@ export class AboutPage implements OnInit {
     }
 
   }
-  closeModal(){document.getElementById('heroModal').style.display = 'none';}
+  closeModal(){document.getElementById('devModal').style.display = 'none';}
 
   copyToClipboard(value){
-    navigator.clipboard.writeText(value);
+    this.clipboard.copy(value);
+    this.landFitnessDB.presentToast('تم نسخ ' + value + ' الى الحافظة', 'dark')
   }
+
+  dismiss() {this.modalController.dismiss({'dismissed': true});}
 
 }

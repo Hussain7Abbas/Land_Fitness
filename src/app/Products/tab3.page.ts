@@ -56,7 +56,7 @@ export class Tab3Page {
   showMore(idPr: string){if(document.getElementById("cardButton" + idPr).innerHTML == "&nbsp;&nbsp;المزيد"){document.getElementById("cardButton"  + idPr).innerHTML = "&nbsp;&nbsp;اقل"; document.getElementById("cardBody" + idPr).style.display = "block";
             }else{document.getElementById("cardButton" + idPr).innerHTML = "&nbsp;&nbsp;المزيد"; document.getElementById("cardBody"  + idPr).style.display = "none";} }
 
-  getImg(idPr: string){if (navigator.onLine) {return this.apiUrl + "api/img/products/" + idPr;
+  getImg(idPr: string){if (localStorage.getItem('isOnline') == '1') {return this.apiUrl + "api/img/products/" + idPr;
                       }else{return "assets/imgs/products.png"}}
 
 }

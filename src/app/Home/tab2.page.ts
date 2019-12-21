@@ -56,7 +56,7 @@ export class Tab2Page {
   showMore(idPo: string){if(document.getElementById("cardButton" + idPo).innerHTML == "عرض المزيد"){document.getElementById("cardButton"  + idPo).innerHTML = "عرض اقل"; document.getElementById("cardBody" + idPo).style.maxHeight = "max-content";
             }else{document.getElementById("cardButton" + idPo).innerHTML = "عرض المزيد"; document.getElementById("cardBody"  + idPo).style.maxHeight = "70px";} }
 
-  getImg(idPo: string){if (navigator.onLine) {return this.apiUrl + "api/img/posts/" + idPo;
+  getImg(idPo: string){if (localStorage.getItem('isOnline') == '1') {return this.apiUrl + "api/img/posts/" + idPo;
   }else{return "assets/imgs/posts.png"}}
 
 }

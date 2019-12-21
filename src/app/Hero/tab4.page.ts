@@ -67,7 +67,7 @@ export class Tab4Page {
   }
   closeModal(){document.getElementById('heroModal').style.display = 'none';}
 
-  getImg(idUs: string){if (navigator.onLine) {return this.apiUrl + "api/img/usersR/" + idUs;
+  getImg(idUs: string){if (localStorage.getItem('isOnline') == '1') {return this.apiUrl + "api/img/usersR/" + idUs;
               }else{return "assets/imgs/usersR.png"}}
 
   getWieght(details){return JSON.parse(details)['wieght']}

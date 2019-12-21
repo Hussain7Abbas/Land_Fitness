@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LandfitnessDBService } from "../landfitness-db.service";
-import { IonContent  } from "@ionic/angular";
+import { IonContent, ModalController  } from "@ionic/angular";
 
 @Component({
   selector: 'app-chat',
@@ -33,7 +33,7 @@ export class ChatPage implements OnInit {
 
   loadMessagesInterval
 
-  constructor(public landFitnessDB: LandfitnessDBService) { }
+  constructor(private landFitnessDB: LandfitnessDBService, private modalController: ModalController) { }
 
   @ViewChild('content', {static: false}) content: IonContent;
 
@@ -127,7 +127,7 @@ export class ChatPage implements OnInit {
   uploadMessages(){
     console.log('uploadMessages');
     
-    if (navigator.onLine) {
+    if (localStorage.getItem('isOnline') == '1') {
       this.landFitnessDB.updateMessages(this.contact.idUs).then(contact=>{
         this.newMessages = [];
         this.contact = Object(contact);
@@ -165,5 +165,7 @@ export class ChatPage implements OnInit {
   }
 
   scrollBottom(){this.content.scrollToBottom(500);}
+
+  dismiss() {this.modalController.dismiss({'dismissed': true});}
 
 }

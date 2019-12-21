@@ -17,13 +17,15 @@ export class Tab1Page {
   trainings = [];
   courceDay = 1;
   cources = [];
+  courcesImgs = {}
 
   training = {
     idTr: '',
     name: '',
     count: '',
     body: '',
-    videoUrl: ''
+    videoUrl: '',
+    img: ''
   }
 
   user = {
@@ -45,12 +47,15 @@ export class Tab1Page {
     backWidth: ""
   };
 
-  constructor(private landFitnessDB:LandfitnessDBService, public sanitizer: DomSanitizer) {}
+  constructor(private landFitnessDB:LandfitnessDBService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(){
     this.loadData()
+    if (localStorage.getItem('courcesImgs') !== null) {
+      this.courcesImgs = JSON.parse(localStorage.getItem('courcesImgs'));
+    }else{localStorage.setItem('courcesImgs', JSON.stringify(this.courcesImgs))}
   }
-  
+
   // ============== Back End ==============
 
   doRefresh(event){
@@ -88,31 +93,32 @@ export class Tab1Page {
         if (user['message'] == 'User Not Found!'){
           this.landFitnessDB.presentAlert('اشتراك القاعة', 'معرف اللاعب غير موجود يرجى التأكد من كتابته بصورة صحيحة.');
         }else{
+          document.getElementById('loadingSVG').style.display = 'block';
           this.checkContactExist(user['data']);
           localStorage.setItem('user', JSON.stringify(user['data']));
         }
         this.loadData();
       })
     }else{this.landFitnessDB.presentAlert('اشتراك القاعة', 'خطأ في معرف اللاعب، يجب ان يتكون من 27 حرف ورقم.')}
-  }
+  }  
   
-checkContactExist(user){
-  this.landFitnessDB.getOneData('contacts', user.idUs).then(contact=>{
-    if (contact['message'] == 'Contact Not Found!') {
-      let newContact = JSON.parse(localStorage.getItem('contact'));
-      this.landFitnessDB.deleteData('contacts', newContact.idUs)
+  checkContactExist(user){
+    this.landFitnessDB.getOneData('contacts', user.idUs).then(contact=>{
+      if (contact['message'] == 'Contact Not Found!') {
+        let newContact = JSON.parse(localStorage.getItem('contact'));
+        this.landFitnessDB.deleteData('contacts', newContact.idUs)
 
-      if (newContact.messages.length > 0) {newContact.idUs = user.idUs; newContact.name = user.name;}
+        if (newContact.messages.length > 0) {newContact.idUs = user.idUs; newContact.name = user.name;}
 
-      this.landFitnessDB.addData('contacts', newContact).then(()=>{
-        localStorage.setItem('contact', JSON.stringify(newContact))
-      })
-    }else{
-      if (JSON.parse(localStorage.getItem('contact')).messages.length > 0) {this.landFitnessDB.deleteData('contacts', JSON.parse(localStorage.getItem('contact')).idUs);}
-      localStorage.setItem('contact', JSON.stringify(contact['data']));
-    }
-  })
-}
+        this.landFitnessDB.addData('contacts', newContact).then(()=>{
+          localStorage.setItem('contact', JSON.stringify(newContact))
+        })
+      }else{
+        if (JSON.parse(localStorage.getItem('contact')).messages.length > 0) {this.landFitnessDB.deleteData('contacts', JSON.parse(localStorage.getItem('contact')).idUs);}
+        localStorage.setItem('contact', JSON.stringify(contact['data']));
+      }
+    })
+  }
 
   isUserModal = true;
   openModal(training, type: string){
@@ -122,7 +128,7 @@ checkContactExist(user){
       document.getElementById('modalHeader').innerHTML = "معلومات اللاعب";
       this.isUserModal = true;
     } else {
-      this.training = {idTr: training.idTr, name: training.name, count: training.count, body: '', videoUrl: ''}
+      this.training = {idTr: training.idTr, name: training.name, count: training.count, img: training.img, body: '', videoUrl: ''}
       document.getElementById('modalHeader').innerHTML = "معلومات التمرين";
       this.isUserModal = false;
       this.landFitnessDB.getOneData('trainings', training.idTr).then(theTraining=>{
@@ -131,7 +137,8 @@ checkContactExist(user){
           name: training.name,
           count: training.count,
           body: JSON.parse(theTraining['data'].details).body,
-          videoUrl: JSON.parse(theTraining['data'].details).videoUrl
+          videoUrl: JSON.parse(theTraining['data'].details).videoUrl,
+          img: training.img
         }
       })
       console.log(this.training);
@@ -152,10 +159,40 @@ checkContactExist(user){
     this.loadData();
   }
 
-  getImg(idTr: string){if (navigator.onLine) {return this.apiUrl + "api/img/trainings/" + idTr;
-              }else{return "assets/imgs/trainings.png"}}
-  getImgU(idUs: string){if (navigator.onLine) {return this.apiUrl + "api/img/users/" + idUs;
-              }else{return "assets/imgs/users.png"}}
+  storeImgInLocalStorage(idTr: string){
+    // Get a reference to the image element
+    let  img = <HTMLImageElement>document.getElementById("IMG" + idTr);
+
+    // Take action when the image has loaded
+    // img.addEventListener("load", function () {
+      let imgCanvas = document.createElement("canvas"),
+          imgContext = imgCanvas.getContext("2d");
+
+      // Make sure canvas is as big as the picture
+      imgCanvas.width = img.width;
+      imgCanvas.height = img.height;
+
+      // Draw image into canvas element
+      imgContext.drawImage(img, 0, 0, img.width, img.height);
+
+      // Get canvas contents as a data URL
+      let imgAsDataURL = imgCanvas.toDataURL("image/png");
+    // }
+    this.courcesImgs[idTr] = imgAsDataURL;
+    localStorage.setItem('courcesImgs', JSON.stringify(this.courcesImgs))
+  }
+
+  getImg(idTr: string){
+    if (this.courcesImgs[idTr] !== undefined) {return this.courcesImgs[idTr]}else{
+    if (localStorage.getItem('isOnline') == '1') {
+    return this.apiUrl + "api/img/trainings/" + idTr;}else{return "assets/imgs/trainings.png"}}
+  }
+  
+  getImgU(idUs: string){
+    if (this.courcesImgs[idUs] !== undefined) {return this.courcesImgs[idUs]}else{
+    if (localStorage.getItem('isOnline') == '1') {
+    return this.apiUrl + "api/img/users/" + idUs;}else{return "assets/imgs/users.png"}}
+  }
   
   checkTraining(idTr: string){
     if (document.getElementById('CHECK' + idTr).getAttribute('src') == "../../assets/imgs/checkedImg.png") {

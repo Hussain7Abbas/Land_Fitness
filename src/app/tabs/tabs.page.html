@@ -1,7 +1,7 @@
 <ion-header slot="top">
   <h3 class="navBarTitle">Land Fitness</h3>
-  <img class="navBarIcons" routerLink="/chat" src="assets/icon/chat.svg"  style="float: right;">
-  <img class="navBarIcons" routerLink="/about" src="assets/icon/info.svg" style="float: left;">
+  <img class="navBarIcons" (click)="openModal('chat')" src="assets/icon/chat.svg"  style="float: right;">
+  <img class="navBarIcons" (click)="openModal('about')" src="assets/icon/info.svg" style="float: left;">
 </ion-header>
 
 
